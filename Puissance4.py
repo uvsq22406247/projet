@@ -1,1 +1,1 @@
-print("bbb")
+import tkinter as tk
