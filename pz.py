@@ -1,2 +1,2 @@
 print("projet")
-print("blabla")
+print("blablo")
