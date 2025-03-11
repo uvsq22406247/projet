@@ -21,4 +21,5 @@ def main():
     root.geometry(f"{WIDTH}x{HEIGHT}")
     root.mainloop()
     
+print("")
 
