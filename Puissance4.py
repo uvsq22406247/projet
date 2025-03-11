@@ -22,6 +22,11 @@ def main():
     root.mainloop()# Lance la boucle principale de l'interface graphique
     show_menu()
     
-print("")
-print('')
-print("")
+def show_menu():
+    clear_window()
+    titre_jeu = tk.label(root, text="PUISSANCE 4", font=("Arial", 74,"bold"))
+    titre_jeu.pack(pady=50)
+
+    bouton_quit = tk.Button(root, text="Quitter", width=20, height=2, command=root.quit)
+    bouton_quit.pack(pady=20)
+
