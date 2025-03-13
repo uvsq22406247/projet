@@ -79,7 +79,7 @@ def click_handler(event):
 
 def create_game_widgets():
     global canvas
-    canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT, cl=WHITE)
+    canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT, bg=WHITE)
     canvas.pack()
     
     back_btn = tk.Button(root, text="Menu", command=show_menu)
