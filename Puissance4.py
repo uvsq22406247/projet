@@ -8,8 +8,9 @@ HEIGHT = 600
 
 # Variables globales
 root = None # root est la fenêtre de base de l'application. Tous les autres éléments graphiques y sont attachés.
-turn = 0
-game_over = False
+turn = 0  # Compteur de tours si le nombre est pair cela correspond au joueur 1 si le nombre impair correspond au joueur 2.
+game_over = False  # Indique si la partie est terminée. 
+                   # False = la partie continue, True = un joueur a gagné ou la grille est pleine.
 
 def clear_window(): #Cette fonction est utilisée pour effacer tous les éléments graphiques de la fenêtre principale.
     for widget in root.winfo_children():
