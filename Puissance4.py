@@ -72,3 +72,14 @@ def click_handler(event):
     else:               # Tour du joueur 2 (jaune)
         player = 2
         color = YELLOW
+
+
+def create_game_widgets():
+    global canvas
+    canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT, cl=White)
+    canvas.pack()
+    
+    back_btn = tk.Button(root, text="Menu", command=show_main_menu)
+    back_btn.place(x=10, y=10)
+    
+    canvas.bind("<Button-1>", click_handler)
