@@ -75,11 +75,6 @@ def show_game():
     new_game()
 
 
-# Lancer le programme
-if __name__ == "__main__":
-    main()
-
-
 def click_handler(event):
     global turn, game_over
 
@@ -147,3 +142,8 @@ def new_game():
     turn = 0
     game_over = False
     draw_board()
+
+
+# Lancer le programme
+if __name__ == "__main__":
+    main()
