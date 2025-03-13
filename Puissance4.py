@@ -40,10 +40,10 @@ def main():
     
 def show_menu():
     clear_window()
-    titre_jeu = tk.Label(root, text="PUISSANCE 4", font=("Arial", 74,"bold" ,))
+    titre_jeu = tk.Label(root, text="PUISSANCE 4", font=("Arial", 74,"bold"))
     titre_jeu.pack(pady=50)
 
-    bouton_play = tk.Button(root, text="Jouer", width=20, height=2, command=show_game_mode,)
+    bouton_play = tk.Button(root, text="Jouer", width=20, height=2, command=show_game_mode)
     bouton_play.pack(pady=20)
 
     bouton_quit = tk.Button(root, text="Quitter", width=20, height=2, command=root.quit)
