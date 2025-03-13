@@ -101,33 +101,34 @@ def draw_board():
 
 
 global circles  # On utilise une liste globale pour stocker les cercles et les modifier plus tard
-    circles = []  # Réinitialiser la liste pour éviter d'avoir plusieurs grilles superposées
+circles = []  # Réinitialiser la liste pour éviter d'avoir plusieurs grilles superposées
 
     # Boucle à travers toutes les colonnes du plateau
-    for col in range(COLS):  
+for col in range(COLS):  
         column_circles = []  # Liste temporaire pour stocker les cercles d'une colonne
 
         # Boucle à travers toutes les lignes du plateau
-        for row in range(ROWS):  
-            # Calcul des coordonnées du cercle (chaque cercle est placé dans une cellule)
-            x1 = col * CELL_SIZE + 10  # Coordonnée X du coin supérieur gauche
-            y1 = row * CELL_SIZE + 10  # Coordonnée Y du coin supérieur gauche
-            x2 = x1 + CELL_SIZE - 20   # Coordonnée X du coin inférieur droit
-            y2 = y1 + CELL_SIZE - 20   # Coordonnée Y du coin inférieur droit
+for row in range(ROWS):  
+    # Calcul des coordonnées du cercle (chaque cercle est placé dans une cellule)
+    x1 = col * CELL_SIZE + 10  # Coordonnée X du coin supérieur gauche
+    y1 = row * CELL_SIZE + 10  # Coordonnée Y du coin supérieur gauche
+    x2 = x1 + CELL_SIZE - 20   # Coordonnée X du coin inférieur droit
+    y2 = y1 + CELL_SIZE - 20   # Coordonnée Y du coin inférieur droit
 
             # Créer un cercle représentant une case vide (fond blanc, contour bleu)
-            circle = canvas.create_oval(x1, y1, x2, y2, fill=WHITE, outline=BLUE)
+    circle = canvas.create_oval(x1, y1, x2, y2, fill=WHITE, outline=BLUE)
 
             # Ajouter le cercle à la liste temporaire de la colonne
-            column_circles.append(circle)
+    column_circles.append(circle)
 
             # Surlignement des cercles quand on passe la souris dessus
-            canvas.tag_bind(circle, "<Enter>", lambda event, c=circle: highlight_circle(c))
-            canvas.tag_bind(circle, "<Leave>", lambda event, c=circle: remove_highlight(c))
+    canvas.tag_bind(circle, "<Enter>", lambda event, c=circle: highlight_circle(c))
+    canvas.tag_bind(circle, "<Leave>", lambda event, c=circle: remove_highlight(c))
 
         # Une fois la colonne complète, l'ajouter à la liste principale des cercles
-        circles.append(column_circles)
+    circles.append(column_circles)
 
+    # À la fin de cette fonction, tous les cercles sont affichés sur le canvas
     # À la fin de cette fonction, tous les cercles sont affichés sur le canvas
 
 def highlight_circle(circle):
