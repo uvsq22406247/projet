@@ -57,6 +57,13 @@ def show_game_mode():
     bouton_retour = tk.Button(root, text="RETOUR",  width=20, height=2, command=show_menu)
     bouton_retour.place(x=10, y=550)
 
+    
+def show_game():
+    clear_window()
+    create_game_widgets()
+    new_game()
+
+
 # Lancer le programme
 if __name__ == "__main__":
     main()
