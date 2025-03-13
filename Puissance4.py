@@ -31,12 +31,17 @@ def show_menu():
     titre_jeu = tk.Label(root, text="PUISSANCE 4", font=("Arial", 74,"bold"))
     titre_jeu.pack(pady=50)
 
-    bouton_play = tk.Button(root, text="Jouer", width=20, height=2, command=)
+    bouton_play = tk.Button(root, text="Jouer", width=20, height=2, command=show_game_mode)
     bouton_play.pack(pady=20)
 
     bouton_quit = tk.Button(root, text="Quitter", width=20, height=2, command=root.quit)
     bouton_quit.pack(pady=20)
     
+def show_game_mode():
+    clear_window()
+    
+    mode_label = tk.Label(root, text="MODE DE JEU", font=("Arial", 74))
+    mode_label.pack(pady=50)
 
 # Lancer le programme
 if __name__ == "__main__":
