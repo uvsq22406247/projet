@@ -46,7 +46,7 @@ def show_game_mode():
     mode_label.pack(pady=50)
 
     bouton_retour = tk.Button(root, text="RETOUR",  width=20, height=2, command=show_menu)
-    bouton_retour.place(x=10, y=30)
+    bouton_retour.place(x=10, y=550)
 
 # Lancer le programme
 if __name__ == "__main__":
