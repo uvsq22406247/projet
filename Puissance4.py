@@ -9,6 +9,7 @@ HEIGHT = 600
 # Variables globales
 root = None # root est la fenêtre de base de l'application. Tous les autres éléments graphiques y sont attachés.
 turn = 0
+game_over = False
 
 def clear_window(): #Cette fonction est utilisée pour effacer tous les éléments graphiques de la fenêtre principale.
     for widget in root.winfo_children():
