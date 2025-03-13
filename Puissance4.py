@@ -85,4 +85,4 @@ def create_game_widgets():
     back_btn = tk.Button(root, text="Menu", command=show_menu)
     back_btn.place(x=10, y=10)
     
-    canvas.bind("<Button-1>", click_handler)
+    canvas.bind("<Button-1>", click_handler)# appuie sur le bouton+1
