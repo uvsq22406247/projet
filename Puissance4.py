@@ -82,7 +82,7 @@ def create_game_widgets():
     canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT, cl=WHITE)
     canvas.pack()
     
-    back_btn = tk.Button(root, text="Menu", command=show_main_menu)
+    back_btn = tk.Button(root, text="Menu", command=show_menu)
     back_btn.place(x=10, y=10)
     
     canvas.bind("<Button-1>", click_handler)
