@@ -48,7 +48,8 @@ def show_menu():
 
     bouton_quit = tk.Button(root, text="Quitter", width=20, height=2, command=root.quit)
     bouton_quit.pack(pady=20)
-    
+
+
 def show_game_mode():
     clear_window()
     
