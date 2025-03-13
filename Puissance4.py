@@ -54,3 +54,18 @@ def show_game_mode():
 # Lancer le programme
 if __name__ == "__main__":
     main()
+
+
+def click_handler(event):
+    global turn, game_over
+
+    # Si le jeu est terminé, ne rien faire
+    if game_over:
+        return
+
+    # Déterminer quel joueur joue
+    if turn % 2 == 0:  # Tour du joueur 1 (rouge)
+        player = 1
+    else:
+        player = 2
+        
