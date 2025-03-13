@@ -114,7 +114,17 @@ def draw_board():
             # Ajouter le cercle à la liste temporaire de la colonne
             column_circles.append(circle)
 
+            # Surlignement des cercles quand on passe la souris dessus
+            canvas.tag_bind(circle, "<Enter>", lambda event, c=circle: highlight_circle(c))
+            canvas.tag_bind(circle, "<Leave>", lambda event, c=circle: remove_highlight(c))
+
         # Une fois la colonne complète, l'ajouter à la liste principale des cercles
         circles.append(column_circles)
 
     # À la fin de cette fonction, tous les cercles sont affichés sur le canvas
+
+def highlight_circle(circle):
+    canvas.itemconfig(circle, outline="red", width=3)
+
+def remove_highlight(circle):
+    canvas.itemconfig(circle, outline="blue", width=1)
