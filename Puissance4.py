@@ -123,6 +123,14 @@ global circles  # On utilise une liste globale pour stocker les cercles et les m
         circles.append(column_circles)
 
     # À la fin de cette fonction, tous les cercles sont affichés sur le canvas
+
+def highlight_circle(circle):
+    canvas.itemconfig(circle, outline="red", width=3)
+
+def remove_highlight(circle):
+    canvas.itemconfig(circle, outline="blue", width=1)
+
+
 def new_game():
     global board, circles, turn, game_over
     board = [[0 for _ in range(COLS)] for _ in range(ROWS)]
@@ -130,9 +138,3 @@ def new_game():
     turn = 0
     game_over = False
     draw_board() 
-
-def highlight_circle(circle):
-    canvas.itemconfig(circle, outline="red", width=3)
-
-def remove_highlight(circle):
-    canvas.itemconfig(circle, outline="blue", width=1)
