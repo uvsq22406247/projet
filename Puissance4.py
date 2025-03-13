@@ -63,11 +63,9 @@ def click_handler(event):
     # Si le jeu est terminé, ne rien faire
     if game_over:
         return
-
-    # Déterminer quel joueur joue
     if turn % 2 == 0:  # Tour du joueur 1 (rouge)
         player = 1
         color = RED
-    else:
+    else:               # Tour du joueur 2 (jaune)
         player = 2
         color = YELLOW
