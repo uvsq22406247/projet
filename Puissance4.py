@@ -46,7 +46,7 @@ def show_game_mode():
     mode_label.pack(pady=50)
 
     btn_2j = tk.Button(root, text="2 Joueurs", width=20, height=2)
-    btn_2j.pack(pady=20)
+    btn_2j.pack(pady=50)
 
     bouton_retour = tk.Button(root, text="RETOUR",  width=20, height=2, command=show_menu)
     bouton_retour.place(x=10, y=550)
