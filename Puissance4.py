@@ -68,7 +68,7 @@ def show_game():
     create_game_widgets()
     new_game()
 
-    
+
 # Lancer le programme
 if __name__ == "__main__":
     main()
