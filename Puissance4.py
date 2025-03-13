@@ -27,7 +27,6 @@ def main():
     root.title("Puissance 4") # Définit le titre de la fenêtre
     root.geometry(f"{WIDTH}x{HEIGHT}")
     show_menu()
-    
     root.mainloop()# Lance la boucle principale de l'interface graphique
     
 
