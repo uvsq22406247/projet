@@ -16,7 +16,7 @@ turn = 0  # Compteur de tours si le nombre est pair cela correspond au joueur 1 
 game_over = False  # Indique si la partie est terminée. 
                    # False = la partie continue, True = un joueur a gagné ou la grille est pleine.
 canvas = None
-circles=
+circles=[]
 
 
 def clear_window(): #Cette fonction est utilisée pour effacer tous les éléments graphiques de la fenêtre principale.
