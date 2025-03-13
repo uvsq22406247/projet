@@ -103,13 +103,9 @@ def draw_board():
     Chaque case est représentée par un cercle vide (blanc avec contour bleu).
     """
 
-
-global circles  # On utilise une liste globale pour stocker les cercles et les modifier plus tard
-circles = []  # Réinitialiser la liste pour éviter d'avoir plusieurs grilles superposées
-
     # Boucle à travers toutes les colonnes du plateau
 for col in range(COLS):  
-        column_circles = []  # Liste temporaire pour stocker les cercles d'une colonne
+    column_circles = []  # Liste temporaire pour stocker les cercles d'une colonne
 
         # Boucle à travers toutes les lignes du plateau
 for row in range(ROWS):  
