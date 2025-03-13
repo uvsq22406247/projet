@@ -4,6 +4,10 @@ from tkinter import messagebox #Importe le module messagebox pour afficher des b
 # Constantes
 WIDTH = 700
 HEIGHT = 600
+CELL_SIZE = 100
+ROWS = 6
+COLS = 7
+
 #couleur
 RED = "red"
 YELLOW = "yellow"
