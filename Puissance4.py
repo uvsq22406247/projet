@@ -31,7 +31,7 @@ def show_menu():
     titre_jeu.pack(pady=50)
 
     bouton_play = tk.Button(root, text="Jouer", width=20, height=2, command=)
-    play_btn.pack(pady=20)
+    bouton_play.pack(pady=20)
 
     bouton_quit = tk.Button(root, text="Quitter", width=20, height=2, command=root.quit)
     bouton_quit.pack(pady=20)
