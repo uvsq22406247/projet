@@ -6,6 +6,7 @@ WIDTH = 700
 HEIGHT = 600
 
 
+
 # Variables globales
 root = None # root est la fenêtre de base de l'application. Tous les autres éléments graphiques y sont attachés.
 turn = 0  # Compteur de tours si le nombre est pair cela correspond au joueur 1 si le nombre impair correspond au joueur 2.
@@ -66,6 +67,7 @@ def click_handler(event):
     # Déterminer quel joueur joue
     if turn % 2 == 0:  # Tour du joueur 1 (rouge)
         player = 1
+        color = RED
     else:
         player = 2
-        
+        color = YELLOW
