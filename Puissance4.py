@@ -45,7 +45,7 @@ def show_game_mode():
     mode_label = tk.Label(root, text="MODE DE JEU", font=("Arial", 74, "bold"))
     mode_label.pack(pady=50)
 
-    bouton_retour = tk.Label(root, text="RETOUR", font=("Arial", 45, "bold")
+    bouton_retour = tk.Label(root, text="RETOUR", font=("Arial", 45, "bold"))
     bouton_retour.place(x=10, y=370)
 
 # Lancer le programme
