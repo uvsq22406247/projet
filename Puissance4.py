@@ -4,14 +4,10 @@ from tkinter import messagebox #Importe le module messagebox pour afficher des b
 # Constantes
 WIDTH = 700
 HEIGHT = 600
-CELL_SIZE = 100
-ROWS = 6
-COLS = 7
-
 #couleur
 RED = "red"
 YELLOW = "yellow"
-
+WHITE = "white"
 
 
 # Variables globales
@@ -20,8 +16,7 @@ turn = 0  # Compteur de tours si le nombre est pair cela correspond au joueur 1 
 game_over = False  # Indique si la partie est terminée. 
                    # False = la partie continue, True = un joueur a gagné ou la grille est pleine.
 canvas = None
-WHITE = "white"
-
+circles=[]
 
 
 def clear_window(): #Cette fonction est utilisée pour effacer tous les éléments graphiques de la fenêtre principale.
@@ -56,18 +51,11 @@ def show_game_mode():
     mode_label = tk.Label(root, text="MODE DE JEU", font=("Arial", 55, "bold"))
     mode_label.pack(pady=50)
 
-    btn_2j = tk.Button(root, text="2 Joueurs", width=20, height=2)
+    btn_2j = tk.Button(root, text="2 Joueurs", width=20, height=2, command)
     btn_2j.pack(pady=50)
 
     bouton_retour = tk.Button(root, text="RETOUR",  width=20, height=2, command=show_menu)
     bouton_retour.place(x=10, y=550)
-
-
-def show_game():
-    clear_window()
-    create_game_widgets()
-    new_game()
-
 
 # Lancer le programme
 if __name__ == "__main__":
