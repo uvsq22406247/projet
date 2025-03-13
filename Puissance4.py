@@ -15,6 +15,10 @@ root = None # root est la fenêtre de base de l'application. Tous les autres él
 turn = 0  # Compteur de tours si le nombre est pair cela correspond au joueur 1 si le nombre impair correspond au joueur 2.
 game_over = False  # Indique si la partie est terminée. 
                    # False = la partie continue, True = un joueur a gagné ou la grille est pleine.
+canvas = None
+WHITE = "white"
+
+
 
 def clear_window(): #Cette fonction est utilisée pour effacer tous les éléments graphiques de la fenêtre principale.
     for widget in root.winfo_children():
@@ -75,7 +79,7 @@ def click_handler(event):
 
 def create_game_widgets():
     global canvas
-    canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT, cl=White)
+    canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT, cl=WHITE)
     canvas.pack()
     
     back_btn = tk.Button(root, text="Menu", command=show_main_menu)
