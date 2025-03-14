@@ -62,9 +62,13 @@ def show_game_mode():
 
     btn_2j = tk.Button(root, text="2 Joueurs", width=20, height=2, command=lambda: start_game("2joueurs"))
     btn_2j.pack(pady=50)
+    btn_2j.bind("<Enter>", lambda event, b=btn_2j: on_hover(b, "lightyellow"))
+    btn_2j.bind("<Leave>", lambda event, b=btn_2j: on_leave(b))
 
     bouton_retour = tk.Button(root, text="RETOUR",  width=20, height=2, command=show_menu)
     bouton_retour.place(x=10, y=550)
+    bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
+    bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
 
 
 def on_hover(button, color):
