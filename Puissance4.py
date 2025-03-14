@@ -45,9 +45,13 @@ def show_menu():
 
     bouton_play = tk.Button(root, text="Jouer", width=20, height=2, command=show_game_mode)
     bouton_play.pack(pady=20)
+    bouton_play.bind("<Enter>", lambda event, b=bouton_play: on_hover(b, "lightgreen"))
+    bouton_play.bind("<Leave>", lambda event, b=bouton_play: on_leave(b))
 
     bouton_quit = tk.Button(root, text="Quitter", width=20, height=2, command=root.quit)
     bouton_quit.pack(pady=20)
+    bouton_quit.bind("<Enter>", lambda event, b=bouton_quit: on_hover(b, "red"))
+    bouton_quit.bind("<Leave>", lambda event, b=bouton_quit: on_leave(b))
 
 
 def show_game_mode():
@@ -62,11 +66,13 @@ def show_game_mode():
     bouton_retour = tk.Button(root, text="RETOUR",  width=20, height=2, command=show_menu)
     bouton_retour.place(x=10, y=550)
 
+
 def on_hover(button, color):
     button.config(bg=color)  # Change la couleur de fond du bouton
 
 def on_leave(button):
     button.config(bg="SystemButtonFace") 
+
 
 def start_game(mode):
     global game_mode
