@@ -170,6 +170,12 @@ def drop_piece(col, player):
             return True
     return False
 
+
+def update_circle(row, col, player):
+    color = RED if player == 1 else YELLOW
+    canvas.itemconfig(circles[col][ROWS - 1 - row], fill=color)
+
+    
 # Lancer le programme
 if __name__ == "__main__":
     main()
