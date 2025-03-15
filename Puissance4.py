@@ -31,7 +31,7 @@ def clear_window(): #Cette fonction est utilisée pour effacer tous les élémen
 def main():
     global root 
     root = tk.Tk() # Crée la fenêtre principale
-    root.title("Puissance 4") # Définit le titre de la fenêtre
+    root.title("Puissance 4 - Jeu de stratégie") # Définit le titre de la fenêtre
     root.geometry(f"{WIDTH}x{HEIGHT}")
     show_menu()
     root.mainloop()# Lance la boucle principale de l'interface graphique
