@@ -162,7 +162,16 @@ def new_game():
     game_over = False
     draw_board()
 
+def drop_piece(col, player):
+    for row in reversed(range(ROWS)):
+        if board[row][col] == 0:
+            board[row][col] = player
+            update_circle(row, col, player)
+            return True
+    return False
 
 # Lancer le programme
 if __name__ == "__main__":
     main()
+
+
