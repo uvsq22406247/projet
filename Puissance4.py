@@ -92,6 +92,10 @@ def show_game():
 
 def click_handler(event):
     global turn, game_over
+    col = event.x // CELL_SIZE  # La colonne est basée sur la position horizontale du clic
+    if col >= COLS:  # Si le clic est en dehors de la grille on ne renvoie rien 
+        return 
+    
 
     # Si le jeu est terminé, ne rien faire
     if game_over:
