@@ -106,6 +106,8 @@ def click_handler(event):
     else:               # Tour du joueur 2 (jaune)
         player = 2
         color = YELLOW
+    update_circle(0, col, player) # Appelle la fonction pour mettre à jour la couleur
+    tour += 1 # Changer le tour du joueur
 
 
 def create_game_widgets():
