@@ -102,12 +102,10 @@ def click_handler(event):
         return
     if turn % 2 == 0:  # Tour du joueur 1 (rouge)
         player = 1
-        color = RED
     else:               # Tour du joueur 2 (jaune)
         player = 2
-        color = YELLOW
-    update_circle(0, col, player) # Appelle la fonction pour mettre à jour la couleur
-    tour += 1 # Changer le tour du joueur
+    if drop_piece(col, player):# Appelle la fonction pour mettre à jour la couleur
+        turn += 1 # Changer le tour du joueur
 
 
 def create_game_widgets():
@@ -165,7 +163,7 @@ def new_game():
     draw_board()
 
 def drop_piece(col, player):
-    for row in reversed(range(ROWS)):
+    for row in range(ROWS):
         if board[row][col] == 0:
             board[row][col] = player
             update_circle(row, col, player)
