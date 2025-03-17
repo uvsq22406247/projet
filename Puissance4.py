@@ -8,7 +8,7 @@ CELL_SIZE = 100
 ROWS = 6
 COLS = 7
 
-#couleur
+#Couleur
 RED = "red"
 YELLOW = "yellow"
 WHITE = "white"
@@ -19,16 +19,16 @@ root = None # root est la fenêtre de base de l'application. Tous les autres él
 turn = 0  # Compteur de tours si le nombre est pair cela correspond au joueur 1 si le nombre impair correspond au joueur 2.
 game_over = False  # Indique si la partie est terminée. 
                    # False = la partie continue, True = un joueur a gagné ou la grille est pleine.
-canvas = None
-circles=[]
-game_mode = "2joueurs"
+canvas = None # Zone de dessin pour la grille
+circles=[] # Stocke les cercles affichés sur le canvas
+game_mode = "2joueurs" # Mode de jeu par défaut
 
 def clear_window(): #Cette fonction est utilisée pour effacer tous les éléments graphiques de la fenêtre principale.
     for widget in root.winfo_children():
         widget.destroy() #Cette méthode supprime un widget de la fenêtre. Lorsqu'elle est appelée, le widget est détruit et retiré de l'interface graphique.
 
     
-def main():
+def main(): # Cette fonction initialise et affiche la fenêtre principale
     global root 
     root = tk.Tk() # Crée la fenêtre principale
     root.title("Puissance 4 - Jeu de stratégie") # Définit le titre de la fenêtre
@@ -37,8 +37,8 @@ def main():
     root.mainloop()# Lance la boucle principale de l'interface graphique
     
 
-    
-def show_menu():
+  
+def show_menu():# Cette fonction affiche le menu principal
     clear_window()
     titre_jeu = tk.Label(root, text="PUISSANCE 4", font=("Arial", 74,"bold"))
     titre_jeu.pack(pady=50)
@@ -54,17 +54,17 @@ def show_menu():
     bouton_quit.bind("<Leave>", lambda event, b=bouton_quit: on_leave(b))
 
 
-def show_game_mode():
+def show_game_mode():#Cette fonction affiche le menu principal8
     clear_window()
     
     mode_label = tk.Label(root, text="MODE DE JEU", font=("Arial", 55, "bold"))
     mode_label.pack(pady=50)
-
+    # Bouton pour démarrer la partie
     btn_2j = tk.Button(root, text="2 Joueurs", width=20, height=2, command=lambda: start_game("2joueurs"))
     btn_2j.pack(pady=50)
     btn_2j.bind("<Enter>", lambda event, b=btn_2j: on_hover(b, "lightyellow"))
     btn_2j.bind("<Leave>", lambda event, b=btn_2j: on_leave(b))
-
+    # Bouton pour quitter le jeu
     bouton_retour = tk.Button(root, text="RETOUR",  width=20, height=2, command=show_menu)
     bouton_retour.place(x=10, y=550)
     bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
@@ -74,23 +74,23 @@ def show_game_mode():
 def on_hover(button, color):
     button.config(bg=color)  # Change la couleur de fond du bouton
 
-def on_leave(button):
+def on_leave(button): #Retablit la couleur d'origine du bouton
     button.config(bg="SystemButtonFace") 
 
 
-def start_game(mode):
+def start_game(mode):# Démarre le jeu avec le mode sélectionné
     global game_mode
     game_mode = mode
     show_game()
 
 
-def show_game():
+def show_game(): # Affiche la grille du jeu
     clear_window()
     create_game_widgets()
     new_game()
 
 
-def click_handler(event):
+def click_handler(event):#Gère le clic sur une colonne de la grille
     global turn, game_over
     col = event.x // CELL_SIZE  # La colonne est basée sur la position horizontale du clic
     if col >= COLS:  # Si le clic est en dehors de la grille on ne renvoie rien 
@@ -108,7 +108,7 @@ def click_handler(event):
         turn += 1 # Changer le tour du joueur
 
 
-def create_game_widgets():
+def create_game_widgets():# Crée le canvas du jeu et les boutons
     global canvas
     canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT, bg=BLUE) 
     canvas.pack()
@@ -119,7 +119,7 @@ def create_game_widgets():
     canvas.bind("<Button-1>", click_handler)# appuie sur le bouton+1
     
 
-def draw_board():
+def draw_board():# Dessine la grille du jeu
     """
     Dessine la grille du jeu Puissance 4 sur le canvas.
     Chaque case est représentée par un cercle vide (blanc avec contour bleu).
@@ -130,15 +130,14 @@ def draw_board():
     for col in range(COLS):  
         column_circles = []  # Liste temporaire pour stocker les cercles d'une colonne
 
-        for row in range(ROWS):  
-            x1 = col * CELL_SIZE + 10
-            y1 = row * CELL_SIZE + 10
-            x2 = x1 + CELL_SIZE - 20
-            y2 = y1 + CELL_SIZE - 20
-
-            circle = canvas.create_oval(x1, y1, x2, y2, fill=WHITE, outline="blue")
-
-            column_circles.append(circle)
+        for row in range(ROWS):
+            # Calcul des coordonnées du cercle 
+            x1 = col * CELL_SIZE + 10 # Coordonnée X du coin supérieur gauche
+            y1 = row * CELL_SIZE + 10 # Coordonnée Y du coin supérieur gauche
+            x2 = x1 + CELL_SIZE - 20 # Coordonnée X du coin inférieur droit
+            y2 = y1 + CELL_SIZE - 20 # Coordonnée Y du coin inférieur droit
+            circle = canvas.create_oval(x1, y1, x2, y2, fill=WHITE, outline="blue") # Crée un cercle blanc avec un contour bleu
+            column_circles.append(circle) # Ajouter le cercle à la liste temporaire de la colonne
 
             canvas.tag_bind(circle, "<Enter>", lambda event, c=circle: highlight_circle(c))
             canvas.tag_bind(circle, "<Leave>", lambda event, c=circle: remove_highlight(c))
@@ -152,9 +151,7 @@ def highlight_circle(circle):
 def remove_highlight(circle):
     canvas.itemconfig(circle, outline="blue", width=1)
 
-
-
-def new_game():
+def new_game():# Réinitialise le jeu
     global board, circles, turn, game_over
     board = [[0 for _ in range(COLS)] for _ in range(ROWS)]
     circles = []
@@ -162,7 +159,7 @@ def new_game():
     game_over = False
     draw_board()
 
-def drop_piece(col, player):
+def drop_piece(col, player):# Place un jeton dans la colonne choisie
     for row in range(ROWS):
         if board[row][col] == 0:
             board[row][col] = player
@@ -171,7 +168,7 @@ def drop_piece(col, player):
     return False
 
 
-def update_circle(row, col, player):
+def update_circle(row, col, player):# Met à jour la couleur du cercle correspondant au joueur
     color = RED if player == 1 else YELLOW
     canvas.itemconfig(circles[col][ROWS - 1 - row], fill=color)
 
