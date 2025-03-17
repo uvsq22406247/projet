@@ -154,18 +154,17 @@ def remove_highlight(circle):
 def new_game():# Réinitialise le jeu
     global board, circles, turn, game_over
     board = [[0 for _ in range(COLS)] for _ in range(ROWS)]
-    circles = []
-    turn = 0
-    game_over = False
-    draw_board()
+    circles = []  # Réinitialise la liste des cercles affichés sur la grille
+    turn = 0  # Remet le compteur de tours à 0 
+    game_over = False  # Réinitialise l'état du jeu à "en cours"
 
 def drop_piece(col, player):# Place un jeton dans la colonne choisie
     for row in range(ROWS):
         if board[row][col] == 0:
-            board[row][col] = player
+            board[row][col] = player # Place le jeton du joueur
             update_circle(row, col, player)
-            return True
-    return False
+            return True # Indique que le placement a été effectué avec succès
+    return False #La colonne est pleine et qu'aucun jeton n'a pu être placé
 
 
 def update_circle(row, col, player):# Met à jour la couleur du cercle correspondant au joueur
