@@ -54,7 +54,7 @@ def show_menu():# Cette fonction affiche le menu principal
     bouton_quit.bind("<Leave>", lambda event, b=bouton_quit: on_leave(b))
 
 
-def show_game_mode():#Cette fonction affiche le menu principal8
+def show_game_mode():#Cette fonction affiche le menu principal
     clear_window()
     
     mode_label = tk.Label(root, text="MODE DE JEU", font=("Arial", 55, "bold"))
@@ -157,6 +157,7 @@ def new_game():# Réinitialise le jeu
     circles = []  # Réinitialise la liste des cercles affichés sur la grille
     turn = 0  # Remet le compteur de tours à 0 
     game_over = False  # Réinitialise l'état du jeu à "en cours"
+    draw_board()
 
 def drop_piece(col, player):# Place un jeton dans la colonne choisie
     for row in range(ROWS):
