@@ -116,7 +116,7 @@ def create_game_widgets():# Crée le canvas du jeu et les boutons
     back_btn = tk.Button(root, text="Menu", command=show_menu)
     back_btn.place(x=10, y=10)
     
-    canvas.bind("<Button-1>", click_handler)# appuie sur le bouton+1
+    canvas.bind("<Button-1>", click_handler)# Lie le bouton clique gauche avec click_handler
     
 
 def draw_board():# Dessine la grille du jeu
