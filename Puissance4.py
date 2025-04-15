@@ -173,8 +173,11 @@ def update_circle(row, col, player):# Met à jour la couleur du cercle correspon
     canvas.itemconfig(circles[col][ROWS - 1 - row], fill=color)
 
     
+
+#****************************************************************************************************
+
+
+
 # Lancer le programme
 if __name__ == "__main__":
     main()
-
-****************************************************************************************************
