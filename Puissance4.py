@@ -105,6 +105,9 @@ def click_handler(event):#Gère le clic sur une colonne de la grille
     else:               # Tour du joueur 2 (jaune)
         player = 2
     if drop_piece(col, player):# Appelle la fonction pour mettre à jour la couleur
+        if check_win(player):
+            end_game(player)
+            return
         turn += 1 # Changer le tour du joueur
 
 
@@ -176,7 +179,44 @@ def update_circle(row, col, player):# Met à jour la couleur du cercle correspon
 
 #****************************************************************************************************
 
+def check_win(player):
+    # Vérification horizontale
+    for row in range(ROWS):
+        for col in range(COLS - 3):
+            if all(board[row][col+i] == player for i in range(4)):
+                return True
 
+    # Vérification verticale
+    for col in range(COLS):
+        for row in range(ROWS - 3):
+            if all(board[row+i][col] == player for i in range(4)):
+                return True
+
+    # Diagonale montante
+    for row in range(3, ROWS):
+        for col in range(COLS - 3):
+            if all(board[row-i][col+i] == player for i in range(4)):
+                return True
+
+    # Diagonale descendante
+    for row in range(ROWS - 3):
+        for col in range(COLS - 3):
+            if all(board[row+i][col+i] == player for i in range(4)):
+                return True
+    return False
+
+def end_game(player):
+    global game_over
+    game_over = True
+    winner = ""
+    
+    if game_mode == "ia":
+        winner = "Joueur Rouge" if player == 1 else "IA"
+    else:
+        winner = "Joueur Rouge" if player == 1 else "Joueur Jaune"
+    
+    messagebox.showinfo("Fin de partie", f"{winner} a gagné !")
+    new_game()
 
 # Lancer le programme
 if __name__ == "__main__":
