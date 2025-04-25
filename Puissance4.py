@@ -233,7 +233,7 @@ def enregistrer_partie():
         f.write(data)  # on écrit tout en une ligne
     messagebox.showinfo("Sauvegarde", "Partie enregistrée !")
 
-def charger_partie():
+
 
 # Lancer le programme
 if __name__ == "__main__":
