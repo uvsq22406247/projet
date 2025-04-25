@@ -22,6 +22,7 @@ game_over = False  # Indique si la partie est terminée.
 canvas = None # Zone de dessin pour la grille
 circles=[] # Stocke les cercles affichés sur le canvas
 game_mode = "2joueurs" # Mode de jeu par défaut
+moves=[]
 
 def clear_window(): #Cette fonction est utilisée pour effacer tous les éléments graphiques de la fenêtre principale.
     for widget in root.winfo_children():
@@ -217,6 +218,8 @@ def end_game(player):
     
     messagebox.showinfo("Fin de partie", f"{winner} a gagné !")
     new_game()
+
+
 
 # Lancer le programme
 if __name__ == "__main__":
