@@ -227,6 +227,11 @@ def end_game(player):
     new_game()
 
 def enregistrer_partie():
+    # On transforme la liste en chaîne "3,4,2,5..."
+    data = ",".join(str(c) for c in moves)
+    with open("sauvegarde.txt", "w") as f:
+        f.write(data)  # on écrit tout en une ligne
+    messagebox.showinfo("Sauvegarde", "Partie enregistrée !")
 
 def charger_partie():
 
