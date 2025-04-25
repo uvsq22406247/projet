@@ -106,6 +106,7 @@ def click_handler(event):#Gère le clic sur une colonne de la grille
     else:               # Tour du joueur 2 (jaune)
         player = 2
     if drop_piece(col, player):# Appelle la fonction pour mettre à jour la couleur
+        moves.append(col)
         if check_win(player):
             end_game(player)
             return
@@ -119,6 +120,12 @@ def create_game_widgets():# Crée le canvas du jeu et les boutons
     
     back_btn = tk.Button(root, text="Menu", command=show_menu)
     back_btn.place(x=10, y=10)
+
+    save_btn = tk.Button(root, text="Sauvegarder", command=enregistrer_partie)
+    save_btn.place(x=100, y=10)
+
+    load_btn = tk.Button(root, text="Charger", command=charger_partie)
+    load_btn.place(x=220, y=10)
     
     canvas.bind("<Button-1>", click_handler)# Lie le bouton clique gauche avec click_handler
     
@@ -219,7 +226,9 @@ def end_game(player):
     messagebox.showinfo("Fin de partie", f"{winner} a gagné !")
     new_game()
 
+def enregistrer_partie():
 
+def charger_partie():
 
 # Lancer le programme
 if __name__ == "__main__":
