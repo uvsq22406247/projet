@@ -119,8 +119,21 @@ def click_handler(event):#Gère le clic sur une colonne de la grille
         if check_win(player):
             end_game(player)
             return
-        turn += 1 # Changer le tour du joueur
+        if all(board[row][col] != 0 for col in range(COLS) for row in range(ROWS)):
+            match_nul()
+            return  # Match nul = arrêt aussi
+        turn += 1
 
+
+def match_nul():
+    global game_over, current_set, current_starter
+    game_over = True
+    messagebox.showinfo("Match nul", "La grille est pleine sans vainqueur pour cette manche.")
+    # Prépare la manche suivante
+    # On avance au set suivant même s'il y a eu match nul.
+    current_set += 1
+    current_starter = 1 - current_starter 
+    new_game()
 
 def create_game_widgets():# Crée le canvas du jeu et les boutons
     global canvas
