@@ -250,6 +250,15 @@ def end_game(player):
     current_set += 1
     current_starter = 1 - current_starter  # Alterner le joueur qui commence la manche
     new_game()
+
+def reset_match():
+    global score_j1, score_j2, current_set, current_starter, moves
+    score_j1 = 0
+    score_j2 = 0
+    current_set = 1
+    current_starter = 0
+    moves.clear()
+    show_menu()
     
 
 def enregistrer_partie():
