@@ -132,7 +132,7 @@ def match_nul():
     # Prépare la manche suivante
     # On avance au set suivant même s'il y a eu match nul.
     current_set += 1
-    current_starter = 1 - current_starter 
+    current_starter = 1 - current_starter   # Alterner le joueur qui commence la manche
     new_game()
 
 def create_game_widgets():# Crée le canvas du jeu et les boutons
@@ -244,27 +244,28 @@ def end_game(player):
         winner = "Joueur Rouge" if player == 1 else "Joueur Jaune"
     
     if player == 1:
-        score_j1 += 1
+        score_j1 += 1 #Augmente le score du joueur gagnant
     else:
         score_j2 += 1
     
     messagebox.showinfo("Fin de manche", f"{winner} a gagné la manche {current_set} !")
     new_game()
-
+    
+    #On vérifies si le match est fini
     if score_j1 == sets_to_win:
         messagebox.showinfo("Fin du match", "Joueur Rouge remporte le match !")
         reset_match()
         return
-    elif score_j2 == sets_to_win:
+    elif score_j2 == sets_to_win: 
         messagebox.showinfo("Fin du match", "Joueur Jaune remporte le match !")
         reset_match()
         return
-    
-    current_set += 1
+    # Prépare la manche suivante
+    current_set += 1 #Sert a passer a la manche suivante 
     current_starter = 1 - current_starter  # Alterner le joueur qui commence la manche
     new_game()
 
-def reset_match():
+def reset_match(): # réinitialiser tout et retourner au menu
     global score_j1, score_j2, current_set, current_starter, moves
     score_j1 = 0
     score_j2 = 0
