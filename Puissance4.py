@@ -173,7 +173,7 @@ def new_game():# Réinitialise le jeu
     global board, circles, turn, game_over
     board = [[0 for _ in range(COLS)] for _ in range(ROWS)]
     circles = []  # Réinitialise la liste des cercles affichés sur la grille
-    turn = 0  # Remet le compteur de tours à 0 
+    turn = current_starter # Celui qui commence alterne 
     game_over = False  # Réinitialise l'état du jeu à "en cours"
     draw_board()
 
