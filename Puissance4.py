@@ -24,7 +24,10 @@ circles=[] # Stocke les cercles affichés sur le canvas
 game_mode = "2joueurs" # Mode de jeu par défaut
 moves=[]
 sets_to_win = 3  # Nombre de manches à gagner pour remporter la partie
+score_j1 = 0 # stock combien de manches chaque joueur a gagnées
+score_j2 = 0 # stock combien de manches chaque joueur a gagnées
 
+ 
 
 def clear_window(): #Cette fonction est utilisée pour effacer tous les éléments graphiques de la fenêtre principale.
     for widget in root.winfo_children():
