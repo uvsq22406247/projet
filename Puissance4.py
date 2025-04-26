@@ -26,6 +26,8 @@ moves=[]
 sets_to_win = 3  # Nombre de manches à gagner pour remporter la partie
 score_j1 = 0 # stock combien de manches chaque joueur a gagnées
 score_j2 = 0 # stock combien de manches chaque joueur a gagnées
+current_starter = 0 
+current_set = 1 
 
  
 
