@@ -235,6 +235,15 @@ def end_game(player):
     else:
         score_j2 += 1
     
+    if score_j1 == sets_to_win:
+        messagebox.showinfo("Fin du match", "Joueur Rouge remporte le match !")
+        reset_match()
+        return
+    elif score_j2 == sets_to_win:
+        messagebox.showinfo("Fin du match", "Joueur Jaune remporte le match !")
+        reset_match()
+        return
+    
     messagebox.showinfo("Fin de manche", f"{winner} a gagné la manche {current_set} !")
     new_game()
 
