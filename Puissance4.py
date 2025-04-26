@@ -234,7 +234,7 @@ def end_game(player):
         score_j1 += 1
     else:
         score_j2 += 1
-    
+
     if score_j1 == sets_to_win:
         messagebox.showinfo("Fin du match", "Joueur Rouge remporte le match !")
         reset_match()
@@ -243,6 +243,10 @@ def end_game(player):
         messagebox.showinfo("Fin du match", "Joueur Jaune remporte le match !")
         reset_match()
         return
+    
+    current_set += 1
+    current_starter = 1 - current_starter  # Alterner le joueur qui commence la manche
+    new_game()
     
     messagebox.showinfo("Fin de manche", f"{winner} a gagné la manche {current_set} !")
     new_game()
