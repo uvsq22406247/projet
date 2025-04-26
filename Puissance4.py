@@ -221,7 +221,7 @@ def check_win(player):
     return False
 
 def end_game(player):
-    global game_over
+    global game_over, score_j1, score_j2, current_starter, current_set
     game_over = True
     winner = ""
     
