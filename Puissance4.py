@@ -230,7 +230,12 @@ def end_game(player):
     else:
         winner = "Joueur Rouge" if player == 1 else "Joueur Jaune"
     
-    messagebox.showinfo("Fin de partie", f"{winner} a gagné !")
+    if player == 1:
+        score_j1 += 1
+    else:
+        score_j2 += 1
+    
+    messagebox.showinfo("Fin de manche", f"{winner} a gagné la manche {current_set} !")
     new_game()
 
 def enregistrer_partie():
