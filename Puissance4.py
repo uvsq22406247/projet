@@ -26,9 +26,6 @@ moves=[]
 sets_to_win = 3  # Nombre de manches à gagner pour remporter la partie
 score_j1 = 0 # stock combien de manches chaque joueur a gagnées
 score_j2 = 0 # stock combien de manches chaque joueur a gagnées
-sets_to_win = 3  # Nombre de manches à gagner pour remporter la partie
-score_j1 = 0 # stock combien de manches chaque joueur a gagnées
-score_j2 = 0 # stock combien de manches chaque joueur a gagnées
 current_starter = 0  # 0 = joueur 1 commence, 1 = joueur 2 commence
 current_set = 1 # Garde le compte de la manche en cours 
  
@@ -70,7 +67,7 @@ def show_game_mode():#Cette fonction affiche le menu principal
     mode_label = tk.Label(root, text="MODE DE JEU", font=("Arial", 55, "bold"))
     mode_label.pack(pady=50)
     # Bouton pour démarrer la partie
-    btn_2j = tk.Button(root, text="2 Joueurs", width=20, height=2, command=lambda: start_game("2joueurs"))
+    btn_2j = tk.Button(root, text="2 Joueurs", width=20, height=2, command= choose_game_type_2players)
     btn_2j.pack(pady=50)
     btn_2j.bind("<Enter>", lambda event, b=btn_2j: on_hover(b, "lightyellow"))
     btn_2j.bind("<Leave>", lambda event, b=btn_2j: on_leave(b))
@@ -88,11 +85,11 @@ def on_leave(button): #Retablit la couleur d'origine du bouton
     button.config(bg="SystemButtonFace") 
 
 
-def start_game(mode):# Démarre le jeu avec le mode sélectionné
-    global game_mode
+def start_game(mode, sets):# Démarre le jeu avec le mode et les sets sélectionnés
+    global game_mode, sets_to_win
     game_mode = mode
+    sets_to_win = sets
     show_game()
-
 
 def show_game(): # Affiche la grille du jeu
     clear_window()
@@ -281,6 +278,27 @@ def match_nul():
     current_set += 1
     current_starter = 1 - current_starter   # Alterner le joueur qui commence la manche
     new_game()
+
+def choose_game_type_2players():#Fonction graphique pour choisir de jouer en plusieurs ou un seul set
+    clear_window()
+
+    type_label = tk.Label(root, text="TYPE DE PARTIE", font=("Arial", 50, "bold"))
+    type_label.pack(pady=50)
+
+    btn_simple = tk.Button(root, text="Partie simple (1 manche)", width=25, height=2, command=lambda: start_game("2joueurs", 1))
+    btn_simple.pack(pady=20)
+    btn_simple.bind("<Enter>", lambda event, b=btn_simple: on_hover(b, "lightblue"))
+    btn_simple.bind("<Leave>", lambda event, b=btn_simple: on_leave(b))
+
+    btn_sets = tk.Button(root, text="Match en 3 sets", width=25, height=2, command=lambda: start_game("2joueurs", 3))
+    btn_sets.pack(pady=20)
+    btn_sets.bind("<Enter>", lambda event, b=btn_sets: on_hover(b, "lightgreen"))
+    btn_sets.bind("<Leave>", lambda event, b=btn_sets: on_leave(b))
+
+    bouton_retour = tk.Button(root, text="RETOUR", width=20, height=2, command=show_game_mode)
+    bouton_retour.place(x=10, y=550)
+    bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
+    bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
 
 # Lancer le programme
 if __name__ == "__main__":
