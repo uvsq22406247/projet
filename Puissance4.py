@@ -269,6 +269,17 @@ def enregistrer_partie():
         f.write(data)  # on écrit tout en une ligne
     messagebox.showinfo("Sauvegarde", "Partie enregistrée !")
 
+def charger_partie():
+    global moves, turn, board, game_over
+    try:
+        with open("sauvegarde.txt", "r") as f:
+            line = f.read().strip()
+        # Reconstruit la liste de colonnes
+        moves = [int(x) for x in line.split(",") if x != ""]
+    except FileNotFoundError:
+        messagebox.showerror("Erreur", "Aucune sauvegarde trouvée.")
+        return
+
 def match_nul():
     global game_over, current_set, current_starter
     game_over = True
