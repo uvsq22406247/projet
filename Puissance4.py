@@ -133,6 +133,10 @@ def create_game_widgets():# Crée le canvas du jeu et les boutons
     save_btn = tk.Button(root, text="Sauvegarder", command=enregistrer_partie)
     save_btn.place(x=100, y=10)
 
+    load_btn = tk.Button(root, text="Charger", command=charger_partie)
+    load_btn.place(x=220, y=10)
+
+
     
     canvas.bind("<Button-1>", click_handler)# Lie le bouton clique gauche avec click_handler
     
