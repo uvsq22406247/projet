@@ -291,22 +291,22 @@ def charger_partie():
     except FileNotFoundError:
         messagebox.showerror("Erreur", "Aucune sauvegarde trouvée.")
  
-          
-    def match_nul():
-        global game_over, current_set, current_starter
-        game_over = True
-        messagebox.showinfo("Match nul", "La grille est pleine sans vainqueur pour cette manche.")
-        # Prépare la manche suivante
-        # On avance au set suivant même s'il y a eu match nul.
-        if sets_to_win == 1:
-            #si c'etait une partie simple => Fin du match
-            messagebox.showinfo("Fin du match", "Match terminé sans vainqueur")
-            reset_match
-        else:
-            #Sinon,c'est un match en sets => on continue
-            current_set += 1
-            current_starter = 1 - current_starter #Alterner qui commence
-            new_game()
+       
+def match_nul():
+    global game_over, current_set, current_starter
+    game_over = True
+    messagebox.showinfo("Match nul", "La grille est pleine sans vainqueur pour cette manche.")
+    # Prépare la manche suivante
+    # On avance au set suivant même s'il y a eu match nul.
+    if sets_to_win == 1:
+        #si c'etait une partie simple => Fin du match
+        messagebox.showinfo("Fin du match", "Match terminé sans vainqueur")
+        reset_match
+    else:
+        #Sinon,c'est un match en sets => on continue
+        current_set += 1
+        current_starter = 1 - current_starter #Alterner qui commence
+        new_game()
 
 def choose_game_type_2players():#Fonction graphique pour choisir de jouer en plusieurs ou un seul set
     clear_window()
