@@ -307,8 +307,7 @@ def charger_partie():
             drop_piece(col, player)     
         turn = len(moves)  # Met à jour le tour courant
         game_over = False  # On relance le jeu normalement
-    except FileNotFoundError:
-        messagebox.showerror("Erreur", "Aucune sauvegarde trouvée.")
+    
 
 
 def match_nul():
