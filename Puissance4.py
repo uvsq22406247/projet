@@ -343,3 +343,4 @@ def undo_last_move(): #nouvelle fonction
 # Lancer le programme
 if __name__ == "__main__":
     main()
+print("Bonjour")
