@@ -278,11 +278,38 @@ def charger_partie():
     try:
         with open("sauvegarde.txt", "r") as f:
             line = f.read().strip()
-        # Reconstruit la liste de colonnes
         moves = [int(x) for x in line.split(",") if x != ""]
+
+        # Recommence une nouvelle partie
+        new_game()
+
+        # Rejoue tous les coups un à un
+        for i, col in enumerate(moves):
+            player = 1 if i % 2 == 0 else 2
+            drop_piece(col, player)
+        
+        turn = len(moves)  # Met à jour le tour courant
+        game_over = False  # On relance le jeu normalement
+
     except FileNotFoundError:
         messagebox.showerror("Erreur", "Aucune sauvegarde trouvée.")
-        return
+def charger_partie():
+    global moves, turn, board, game_over
+    try:
+        with open("sauvegarde.txt", "r") as f:
+            line = f.read().strip()
+        moves = [int(x) for x in line.split(",") if x != ""]
+        # Recommence une nouvelle partie
+        new_game()
+        # Rejoue tous les coups un à un
+        for i, col in enumerate(moves):
+            player = 1 if i % 2 == 0 else 2
+            drop_piece(col, player)     
+        turn = len(moves)  # Met à jour le tour courant
+        game_over = False  # On relance le jeu normalement
+    except FileNotFoundError:
+        messagebox.showerror("Erreur", "Aucune sauvegarde trouvée.")
+
 
 def match_nul():
     global game_over, current_set, current_starter
