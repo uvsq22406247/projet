@@ -305,8 +305,7 @@ def charger_partie():
         for i, col in enumerate(moves):
             player = 1 if i % 2 == 0 else 2
             drop_piece(col, player)     
-        turn = len(moves)  # Met à jour le tour courant
-        game_over = False  # On relance le jeu normalement
+        
     
 
 
