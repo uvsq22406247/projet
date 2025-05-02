@@ -326,6 +326,11 @@ def undo_last_move(): #nouvelle fonction
     global turn, game_over,undo_used
     if not move_history or game_over or undo_used:
         return
+    row, col = move_history.pop()
+    board[row][col] = 0
+    canvas.itemconfig(circles[col][ROWS - 1 - row], fill=WHITE)
+    turn -= 1
+    undo_used = True
 
 
 # Lancer le programme
