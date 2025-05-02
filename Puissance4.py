@@ -101,10 +101,9 @@ def click_handler(event):#modif click handler
     col = event.x // CELL_SIZE
     if col >= COLS:
         return 
-    if turn % 2 == 0:  # Tour du joueur 1 (rouge)
-        player = 1
-    else:               # Tour du joueur 2 (jaune)
-        player = 2
+    if game_over:
+        return
+    
     if drop_piece(col, player):# Appelle la fonction pour mettre à jour la couleur
         moves.append(col)
         if check_win(player):
