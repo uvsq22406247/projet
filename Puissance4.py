@@ -28,7 +28,8 @@ score_j1 = 0 # stock combien de manches chaque joueur a gagnées
 score_j2 = 0 # stock combien de manches chaque joueur a gagnées
 current_starter = 0  # 0 = joueur 1 commence, 1 = joueur 2 commence
 current_set = 1 # Garde le compte de la manche en cours 
- 
+move_history = []
+undo_used = False
 
 def clear_window(): #Cette fonction est utilisée pour effacer tous les éléments graphiques de la fenêtre principale.
     for widget in root.winfo_children():
@@ -180,6 +181,7 @@ def drop_piece(col, player):# Place un jeton dans la colonne choisie
         if board[row][col] == 0:
             board[row][col] = player # Place le jeton du joueur
             update_circle(row, col, player)
+            move_history.append((row, col)) #(met le cercle placé dans la liste move_history)
             return True # Indique que le placement a été effectué avec succès
     return False #La colonne est pleine et qu'aucun jeton n'a pu être placé
 
