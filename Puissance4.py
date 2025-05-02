@@ -322,6 +322,12 @@ def choose_game_type_2players():#Fonction graphique pour choisir de jouer en plu
     bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
     bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
 
+def undo_last_move(): #nouvelle fonction
+    global turn, game_over,undo_used
+    if not move_history or game_over or undo_used:
+        return
+
+
 # Lancer le programme
 if __name__ == "__main__":
     main()
