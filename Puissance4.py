@@ -296,11 +296,7 @@ def charger_partie():
         global game_over, current_set, current_starter
         game_over = True
         messagebox.showinfo("Match nul", "La grille est pleine sans vainqueur pour cette manche.")
-        # Prépare la manche suivante
-        # On avance au set suivant même s'il y a eu match nul.
-        current_set += 1
-        current_starter = 1 - current_starter   # Alterner le joueur qui commence la manche
-        new_game()
+
 
 def choose_game_type_2players():#Fonction graphique pour choisir de jouer en plusieurs ou un seul set
     clear_window()
