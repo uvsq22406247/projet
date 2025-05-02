@@ -41,8 +41,7 @@ def main(): # Cette fonction initialise et affiche la fenêtre principale
     root = tk.Tk() # Crée la fenêtre principale
     root.title("Puissance 4 - Jeu de stratégie") # Définit le titre de la fenêtre
     root.geometry(f"{WIDTH}x{HEIGHT}")
-    root.bind('<Espace>' , lambda event : show_menu ())
-    show_menu()
+    show_menu() 
     root.mainloop()# Lance la boucle principale de l'interface graphique
     
 
