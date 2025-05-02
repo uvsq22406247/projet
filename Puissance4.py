@@ -42,7 +42,7 @@ def main(): # Cette fonction initialise et affiche la fenêtre principale
     root.title("Puissance 4 - Jeu de stratégie") # Définit le titre de la fenêtre
     root.geometry(f"{WIDTH}x{HEIGHT}")
     root.bind('<Escape>', lambda event:undo_last_move())
-     show_menu()
+    show_menu()
     root.mainloop()# Lance la boucle principale de l'interface graphique
     
 
@@ -298,9 +298,15 @@ def charger_partie():
         messagebox.showinfo("Match nul", "La grille est pleine sans vainqueur pour cette manche.")
         # Prépare la manche suivante
         # On avance au set suivant même s'il y a eu match nul.
-        current_set += 1
-        current_starter = 1 - current_starter   # Alterner le joueur qui commence la manche
-        new_game()
+        if sets_to_win == 1:
+            #si c'etait une partie simple => Fin du match
+            messagebox.showinfo("Fin du match", "Match terminé sans vainqueur")
+            reset_match
+        else:
+            #Sinon,c'est un match en sets => on continue
+            current_set += 1
+            current_starter = 1 - current_starter #Alterner qui commence
+            new_game()
 
 def choose_game_type_2players():#Fonction graphique pour choisir de jouer en plusieurs ou un seul set
     clear_window()
