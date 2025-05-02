@@ -103,9 +103,10 @@ def click_handler(event):#modif click handler
         return 
     if game_over:
         return
-    
+    player = 1 if turn % 2 == 0 else 2
     if drop_piece(col, player):# Appelle la fonction pour mettre à jour la couleur
         moves.append(col)
+        undo_used = False 
         if check_win(player):
             end_game(player)
             return
