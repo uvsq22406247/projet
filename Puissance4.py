@@ -301,10 +301,7 @@ def charger_partie():
         moves = [int(x) for x in line.split(",") if x != ""]
         # Recommence une nouvelle partie
         new_game()
-        # Rejoue tous les coups un à un
-        for i, col in enumerate(moves):
-            player = 1 if i % 2 == 0 else 2
-            drop_piece(col, player)     
+          
         
     
 
