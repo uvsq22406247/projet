@@ -96,8 +96,11 @@ def show_game(): # Affiche la grille du jeu
     create_game_widgets()
     new_game()
 
-
- 
+def click_handler(event):#modif click handler
+    global turn, game_over, undo_used, moves
+    col = event.x // CELL_SIZE
+    if col >= COLS:
+        return 
     if turn % 2 == 0:  # Tour du joueur 1 (rouge)
         player = 1
     else:               # Tour du joueur 2 (jaune)
