@@ -97,16 +97,7 @@ def show_game(): # Affiche la grille du jeu
     new_game()
 
 
-def click_handler(event):#Gère le clic sur une colonne de la grille
-    global turn, game_over
-    col = event.x // CELL_SIZE  # La colonne est basée sur la position horizontale du clic
-    if col >= COLS:  # Si le clic est en dehors de la grille on ne renvoie rien 
-        return 
-    
-
-    # Si le jeu est terminé, ne rien faire
-    if game_over:
-        return
+ 
     if turn % 2 == 0:  # Tour du joueur 1 (rouge)
         player = 1
     else:               # Tour du joueur 2 (jaune)
@@ -295,11 +286,7 @@ def charger_partie():
         messagebox.showerror("Erreur", "Aucune sauvegarde trouvée.")
  
           
-        
-    
-
-
-def match_nul():
+    def match_nul():
     global game_over, current_set, current_starter
     game_over = True
     messagebox.showinfo("Match nul", "La grille est pleine sans vainqueur pour cette manche.")
