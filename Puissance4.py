@@ -293,14 +293,7 @@ def charger_partie():
 
     except FileNotFoundError:
         messagebox.showerror("Erreur", "Aucune sauvegarde trouvée.")
-def charger_partie():
-    global moves, turn, board, game_over
-    try:
-        with open("sauvegarde.txt", "r") as f:
-            line = f.read().strip()
-        moves = [int(x) for x in line.split(",") if x != ""]
-        # Recommence une nouvelle partie
-        new_game()
+ 
           
         
     
