@@ -71,6 +71,13 @@ def show_game_mode():#Cette fonction affiche le menu principal
     btn_2j.pack(pady=50)
     btn_2j.bind("<Enter>", lambda event, b=btn_2j: on_hover(b, "lightyellow"))
     btn_2j.bind("<Leave>", lambda event, b=btn_2j: on_leave(b))
+
+        # Bouton contre IA
+    btn_ia = tk.Button(root, text="Contre l'IA", width=20, height=2, command=lambda: start_game("ia", 1))
+    btn_ia.pack(pady=20)
+    btn_ia.bind("<Enter>", lambda event, b=btn_ia: on_hover(b, "lightblue"))
+    btn_ia.bind("<Leave>", lambda event, b=btn_ia: on_leave(b))
+
     # Bouton pour quitter le jeu
     bouton_retour = tk.Button(root, text="RETOUR",  width=20, height=2, command=show_menu)
     bouton_retour.place(x=10, y=150)
