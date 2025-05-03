@@ -363,6 +363,24 @@ def ask_parameters():
     ROWS, COLS, CONNECT_N = r, c, n
     return True
 
+def check_win_IA(temp_board, player):
+    for row in range(ROWS):
+        for col in range(COLS - 3):
+            if all(temp_board[row][col+i] == player for i in range(CONNECT_N)):
+                return True
+    for col in range(COLS):
+        for row in range(ROWS - 3):
+            if all(temp_board[row+i][col] == player for i in range(CONNECT_N)):
+                return True
+    for row in range(3, ROWS):
+        for col in range(COLS - 3):
+            if all(temp_board[row-i][col+i] == player for i in range(CONNECT_N)):
+                return True
+    for row in range(ROWS - 3):
+        for col in range(COLS - 3):
+            if all(temp_board[row+i][col+i] == player for i in range(CONNECT_N)):
+                return True
+    return False
 # Lancer le programme
 if __name__ == "__main__":
     main()
