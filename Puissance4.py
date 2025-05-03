@@ -363,6 +363,27 @@ def ask_parameters():
     ROWS, COLS, CONNECT_N = r, c, n
     return True
 
+def ia_choisir_colonne():
+    for col in range(COLS):
+        temp_board = [row[:] for row in board]
+        if simule_coup(temp_board, col, 2) and check_win_simule(temp_board, 2):
+            return col
+    for col in range(COLS):
+        temp_board = [row[:] for row in board]
+        if simule_coup(temp_board, col, 1) and check_win_simule(temp_board, 1):
+            return col
+    colonnes_valides = [c for c in range(COLS) if board[ROWS - 1][c] == 0]
+    if colonnes_valides:
+        return random.choice(colonnes_valides)
+    return None
+
+def simule_coup(temp_board, col, player):
+    for row in range(ROWS):
+        if temp_board[row][col] == 0:
+            temp_board[row][col] = player
+            return True
+    return False
+
 # Lancer le programme
 if __name__ == "__main__":
     main()
