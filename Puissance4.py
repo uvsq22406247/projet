@@ -427,3 +427,7 @@ def ask_parameters():
 
     ROWS, COLS, CONNECT_N = r, c, n
     return True
+
+# Lancer le programme
+if __name__ == "__main__":
+    main()
