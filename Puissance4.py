@@ -124,7 +124,8 @@ def click_handler(event):#modif click handler
             match_nul()
             return  # Match nul = arrêt aussi
         turn += 1
-
+    if game_mode == "ia" and not game_over:
+            canvas.after(500, ia_joue)
 
 def create_game_widgets():
     global canvas
@@ -366,11 +367,11 @@ def ask_parameters():
 def ia_choisir_colonne():
     for col in range(COLS):
         temp_board = [row[:] for row in board]
-        if simule_coup(temp_board, col, 2) and check_win_simule(temp_board, 2):
+        if simule_coup(temp_board, col, 2) and check_win_IA(temp_board, 2):
             return col
     for col in range(COLS):
         temp_board = [row[:] for row in board]
-        if simule_coup(temp_board, col, 1) and check_win_simule(temp_board, 1):
+        if simule_coup(temp_board, col, 1) and check_win_IA(temp_board, 1):
             return col
     colonnes_valides = [c for c in range(COLS) if board[ROWS - 1][c] == 0]
     if colonnes_valides:
@@ -384,6 +385,37 @@ def simule_coup(temp_board, col, player):
             return True
     return False
 
+def check_win_IA(temp_board, player):
+    for row in range(ROWS):
+        for col in range(COLS - 3):
+            if all(temp_board[row][col+i] == player for i in range(CONNECT_N)):
+                return True
+    for col in range(COLS):
+        for row in range(ROWS - 3):
+            if all(temp_board[row+i][col] == player for i in range(CONNECT_N)):
+                return True
+    for row in range(3, ROWS):
+        for col in range(COLS - 3):
+            if all(temp_board[row-i][col+i] == player for i in range(CONNECT_N)):
+                return True
+    for row in range(ROWS - 3):
+        for col in range(COLS - 3):
+            if all(temp_board[row+i][col+i] == player for i in range(CONNECT_N)):
+                return True
+    return False
+
+def ia_joue():
+    global turn, game_over, moves
+    ia_col = ia_choisir_colonne()
+    if ia_col is not None and drop_piece(ia_col, 2):
+        moves.append(ia_col)
+        if check_win(2):
+            end_game(2)
+            return
+        if all(board[row][col] != 0 for col in range(COLS) for row in range(ROWS)):
+            match_nul()
+            return
+        turn += 1
 # Lancer le programme
 if __name__ == "__main__":
     main()
