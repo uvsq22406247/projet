@@ -71,82 +71,9 @@ def show_game_mode():#Cette fonction affiche le menu principal
     btn_2j.pack(pady=50)
     btn_2j.bind("<Enter>", lambda event, b=btn_2j: on_hover(b, "lightyellow"))
     btn_2j.bind("<Leave>", lambda event, b=btn_2j: on_leave(b))
-
-    from tkinter import messagebox, simpledialog #Importe le module messagebox pour afficher des boîtes de dialogue.
-
-# Constantes
-CELL_SIZE = 100
-ROWS = 6
-COLS = 7
-CONNECT_N = 4    # Nombre de jetons alignés nécessaires pour gagner
-
-#Couleur
-RED = "red"
-YELLOW = "yellow"
-WHITE = "white"
-BLUE = "blue"
-
-# Variables globales
-root = None # root est la fenêtre de base de l'application. Tous les autres éléments graphiques y sont attachés.
-turn = 0  # Compteur de tours si le nombre est pair cela correspond au joueur 1 si le nombre impair correspond au joueur 2.
-game_over = False  # Indique si la partie est terminée. 
-                   # False = la partie continue, True = un joueur a gagné ou la grille est pleine.
-canvas = None # Zone de dessin pour la grille
-circles=[] # Stocke les cercles affichés sur le canvas
-game_mode = "2joueurs" # Mode de jeu par défaut
-moves=[]
-sets_to_win = 3  # Nombre de manches à gagner pour remporter la partie
-score_j1 = 0 # stock combien de manches chaque joueur a gagnées
-score_j2 = 0 # stock combien de manches chaque joueur a gagnées
-current_starter = 0  # 0 = joueur 1 commence, 1 = joueur 2 commence
-current_set = 1 # Garde le compte de la manche en cours 
-move_history = []
-undo_used = False
-
-def clear_window(): #Cette fonction est utilisée pour effacer tous les éléments graphiques de la fenêtre principale.
-    for widget in root.winfo_children():
-        widget.destroy() #Cette méthode supprime un widget de la fenêtre. Lorsqu'elle est appelée, le widget est détruit et retiré de l'interface graphique.
-
-    
-def main(): # Cette fonction initialise et affiche la fenêtre principale
-    global root 
-    root = tk.Tk() # Crée la fenêtre principale
-    root.title("Puissance 4 - Jeu de stratégie") # Définit le titre de la fenêtre
-    root.bind('<Escape>', lambda event:undo_last_move())
-    show_menu()
-    root.mainloop()# Lance la boucle principale de l'interface graphique
-    
-
-  
-def show_menu():# Cette fonction affiche le menu principal
-    clear_window()
-    titre_jeu = tk.Label(root, text="PUISSANCE 4", font=("Arial", 74,"bold"))
-    titre_jeu.pack(pady=50)
-
-    bouton_play = tk.Button(root, text="Jouer", width=20, height=2, command=show_game_mode)
-    bouton_play.pack(pady=20)
-    bouton_play.bind("<Enter>", lambda event, b=bouton_play: on_hover(b, "lightgreen"))
-    bouton_play.bind("<Leave>", lambda event, b=bouton_play: on_leave(b))
-
-    bouton_quit = tk.Button(root, text="Quitter", width=20, height=2, command=root.quit)
-    bouton_quit.pack(pady=20)
-    bouton_quit.bind("<Enter>", lambda event, b=bouton_quit: on_hover(b, "red"))
-    bouton_quit.bind("<Leave>", lambda event, b=bouton_quit: on_leave(b))
-
-
-def show_game_mode():#Cette fonction affiche le menu principal
-    clear_window()
-    
-    mode_label = tk.Label(root, text="MODE DE JEU", font=("Arial", 55, "bold"))
-    mode_label.pack(pady=50)
-    # Bouton pour démarrer la partie
-    btn_2j = tk.Button(root, text="2 Joueurs", width=20, height=2, command= choose_game_type_2players)
-    btn_2j.pack(pady=50)
-    btn_2j.bind("<Enter>", lambda event, b=btn_2j: on_hover(b, "lightyellow"))
-    btn_2j.bind("<Leave>", lambda event, b=btn_2j: on_leave(b))
     # Bouton pour quitter le jeu
     bouton_retour = tk.Button(root, text="RETOUR",  width=20, height=2, command=show_menu)
-    bouton_retour.place(x=10, y=550)
+    bouton_retour.place(x=10, y=150)
     bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
     bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
 
