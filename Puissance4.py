@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox, simpledialog #Importe le module messagebox pour afficher des boîtes de dialogue.
+import random
 
 # Constantes
 CELL_SIZE = 100
