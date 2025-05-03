@@ -1,12 +1,11 @@
 import tkinter as tk
-from tkinter import messagebox #Importe le module messagebox pour afficher des boîtes de dialogue.
+from tkinter import messagebox, simpledialog #Importe le module messagebox pour afficher des boîtes de dialogue.
 
 # Constantes
-WIDTH = 700
-HEIGHT = 600
 CELL_SIZE = 100
 ROWS = 6
 COLS = 7
+CONNECT_N = 4    # Nombre de jetons alignés nécessaires pour gagner
 
 #Couleur
 RED = "red"
@@ -40,7 +39,6 @@ def main(): # Cette fonction initialise et affiche la fenêtre principale
     global root 
     root = tk.Tk() # Crée la fenêtre principale
     root.title("Puissance 4 - Jeu de stratégie") # Définit le titre de la fenêtre
-    root.geometry(f"{WIDTH}x{HEIGHT}")
     root.bind('<Escape>', lambda event:undo_last_move())
     show_menu()
     root.mainloop()# Lance la boucle principale de l'interface graphique
@@ -91,6 +89,8 @@ def start_game(mode, sets):# Démarre le jeu avec le mode et les sets sélection
     global game_mode, sets_to_win
     game_mode = mode
     sets_to_win = sets
+    if not ask_parameters():
+        return
     show_game()
 
 def show_game(): # Affiche la grille du jeu
@@ -118,23 +118,17 @@ def click_handler(event):#modif click handler
         turn += 1
 
 
-def create_game_widgets():# Crée le canvas du jeu et les boutons
+def create_game_widgets():
     global canvas
-    canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT, bg=BLUE) 
+    top = tk.Frame(root)
+    top.pack(side="top", pady=5)
+    tk.Button(top, text="Menu", command=show_menu).pack(side="left", padx=5)
+    tk.Button(top, text="Sauvegarder", command=enregistrer_partie).pack(side="left", padx=5)
+    tk.Button(top, text="Charger", command=charger_partie).pack(side="left", padx=5)
+    tk.Button(top, text="Annuler", command=undo_last_move).pack(side="left", padx=5)
+    canvas = tk.Canvas(root, width=COLS*CELL_SIZE, height=ROWS*CELL_SIZE, bg=BLUE)
     canvas.pack()
-    
-    back_btn = tk.Button(root, text="Menu", command=show_menu)
-    back_btn.place(x=10, y=10)
-
-    save_btn = tk.Button(root, text="Sauvegarder", command=enregistrer_partie)
-    save_btn.place(x=100, y=10)
-
-    load_btn = tk.Button(root, text="Charger", command=charger_partie)
-    load_btn.place(x=220, y=10)
-
-
-    
-    canvas.bind("<Button-1>", click_handler)# Lie le bouton clique gauche avec click_handler
+    canvas.bind("<Button-1>", click_handler)
     
 
 def draw_board():# Dessine la grille du jeu
@@ -150,10 +144,8 @@ def draw_board():# Dessine la grille du jeu
 
         for row in range(ROWS):
             # Calcul des coordonnées du cercle 
-            x1 = col * CELL_SIZE + 10 # Coordonnée X du coin supérieur gauche
-            y1 = row * CELL_SIZE + 10 # Coordonnée Y du coin supérieur gauche
-            x2 = x1 + CELL_SIZE - 20 # Coordonnée X du coin inférieur droit
-            y2 = y1 + CELL_SIZE - 20 # Coordonnée Y du coin inférieur droit
+            x1, y1 = col*CELL_SIZE+5, row*CELL_SIZE+5
+            x2, y2 = (col+1)*CELL_SIZE-5, (row+1)*CELL_SIZE-5
             circle = canvas.create_oval(x1, y1, x2, y2, fill=WHITE, outline="blue") # Crée un cercle blanc avec un contour bleu
             column_circles.append(circle) # Ajouter le cercle à la liste temporaire de la colonne
 
@@ -174,7 +166,7 @@ def new_game():# Réinitialise le jeu
     board = [[0 for _ in range(COLS)] for _ in range(ROWS)]
     circles = []  # Réinitialise la liste des cercles affichés sur la grille
     turn = current_starter # Celui qui commence alterne 
-    game_over = False  # Réinitialise l'état du jeu à "en cours"
+    game_over, undo_used = False, False  # Réinitialise l'état du jeu à "en cours"
     draw_board()
 
 def drop_piece(col, player):# Place un jeton dans la colonne choisie
@@ -199,25 +191,25 @@ def check_win(player):
     # Vérification horizontale
     for row in range(ROWS):
         for col in range(COLS - 3):
-            if all(board[row][col+i] == player for i in range(4)):
+            if all(board[row][col+i] == player for i in range(CONNECT_N)):
                 return True
 
     # Vérification verticale
     for col in range(COLS):
         for row in range(ROWS - 3):
-            if all(board[row+i][col] == player for i in range(4)):
+            if all(board[row+i][col] == player for i in range(CONNECT_N)):
                 return True
 
     # Diagonale montante
     for row in range(3, ROWS):
         for col in range(COLS - 3):
-            if all(board[row-i][col+i] == player for i in range(4)):
+            if all(board[row-i][col+i] == player for i in range(CONNECT_N)):
                 return True
 
     # Diagonale descendante
     for row in range(ROWS - 3):
         for col in range(COLS - 3):
-            if all(board[row+i][col+i] == player for i in range(4)):
+            if all(board[row+i][col+i] == player for i in range(CONNECT_N)):
                 return True
     return False
 
@@ -301,7 +293,7 @@ def match_nul():
     if sets_to_win == 1:
         #si c'etait une partie simple => Fin du match
         messagebox.showinfo("Fin du match", "Match terminé sans vainqueur")
-        reset_match
+        reset_match()
     else:
         #Sinon,c'est un match en sets => on continue
         current_set += 1
@@ -339,8 +331,29 @@ def undo_last_move(): #nouvelle fonction
     turn -= 1
     undo_used = True
 
+def ask_parameters():
+    """
+    Affiche des boîtes de dialogue pour définir ROWS, COLS et CONNECT_N.
+    """
+    global ROWS, COLS, CONNECT_N
+    r = simpledialog.askinteger("Paramètres", "Nombre de lignes :", initialvalue=ROWS, minvalue=4)
+    if r is None:
+        return False
+    c = simpledialog.askinteger("Paramètres", "Nombre de colonnes :", initialvalue=COLS, minvalue=4)
+    if c is None:
+        return False
+    n = simpledialog.askinteger(
+        "Paramètres",
+        f"Nombre de jetons à aligner (3 à {max(r,c)}) :",
+        initialvalue=CONNECT_N,
+        minvalue=3,
+        maxvalue=max(r, c)
+    )
+    if n is None:
+        return False
 
+    ROWS, COLS, CONNECT_N = r, c, n
+    return True
 # Lancer le programme
 if __name__ == "__main__":
     main()
-print("Bonjour")
