@@ -321,7 +321,7 @@ def choose_game_type_2players():#Fonction graphique pour choisir de jouer en plu
     bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
     bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
 
-def undo_last_move(): #nouvelle fonction
+def undo_last_move(): #Annuler un coup
     global turn, game_over,undo_used
     if not move_history or game_over or undo_used:
         return
@@ -332,9 +332,9 @@ def undo_last_move(): #nouvelle fonction
     undo_used = True
 
 def ask_parameters():
-    """
-    Affiche des boîtes de dialogue pour définir ROWS, COLS et CONNECT_N.
-    """
+   
+    #Affiche des boîtes de dialogue pour définir ROWS, COLS et CONNECT_N.
+    
     global ROWS, COLS, CONNECT_N
     r = simpledialog.askinteger("Paramètres", "Nombre de lignes :", initialvalue=ROWS, minvalue=4)
     if r is None:
