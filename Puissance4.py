@@ -80,7 +80,7 @@ def show_game_mode():#Cette fonction affiche le menu principal
 
     # Bouton pour quitter le jeu
     bouton_retour = tk.Button(root, text="RETOUR",  width=20, height=2, command=show_menu)
-    bouton_retour.place(x=10, y=150)
+    bouton_retour.place(x=10, y=550)
     bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
     bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
 
