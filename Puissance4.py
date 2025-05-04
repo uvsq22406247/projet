@@ -62,29 +62,29 @@ def show_menu():# Cette fonction affiche le menu principal
     bouton_quit.bind("<Leave>", lambda event, b=bouton_quit: on_leave(b))
 
 
-def show_game_mode():#Cette fonction affiche le menu principal
+def show_game_mode():  # Cette fonction affiche le menu principal
     clear_window()
-    
+
     mode_label = tk.Label(root, text="MODE DE JEU", font=("Arial", 74, "bold"))
     mode_label.pack(pady=50)
+
     # Bouton pour démarrer la partie
-    btn_2j = tk.Button(root, text="2 Joueurs", width=20, height=2, command= choose_game_type_2players)
+    btn_2j = tk.Button(root, text="2 Joueurs", width=20, height=2, command=choose_game_type_2players)
     btn_2j.pack(pady=50)
     btn_2j.bind("<Enter>", lambda event, b=btn_2j: on_hover(b, "lightyellow"))
     btn_2j.bind("<Leave>", lambda event, b=btn_2j: on_leave(b))
 
-        # Bouton contre IA
-    btn_ia = tk.Button(root, text="Contre l'IA", width=20, height=2, command= choose_game_type_IA)
+    # Bouton contre IA
+    btn_ia = tk.Button(root, text="Contre l'IA", width=20, height=2, command=choose_game_type_IA)
     btn_ia.pack(pady=20)
     btn_ia.bind("<Enter>", lambda event, b=btn_ia: on_hover(b, "lightblue"))
     btn_ia.bind("<Leave>", lambda event, b=btn_ia: on_leave(b))
 
-    # Bouton pour quitter le jeu
-    bouton_retour = tk.Button(root, text="RETOUR",  width=20, height=2, command=show_menu)
-    bouton_retour.place(x=10, y=550)
+    # Bouton pour revenir au menu principal
+    bouton_retour = tk.Button(root, text="RETOUR", width=20, height=2, command=show_menu)
+    bouton_retour.pack(side="bottom", anchor="w", padx=10, pady=20)
     bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
     bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
-
 
 def on_hover(button, color):
     button.config(bg=color)  # Change la couleur de fond du bouton
@@ -309,7 +309,7 @@ def match_nul():
         current_starter = 1 - current_starter #Alterner qui commence
         new_game()
 
-def choose_game_type_2players():#Fonction graphique pour choisir de jouer en plusieurs ou un seul set
+def choose_game_type_2players():  # Fonction graphique pour choisir de jouer en plusieurs ou un seul set
     clear_window()
 
     type_label = tk.Label(root, text="TYPE DE PARTIE", font=("Arial", 50, "bold"))
@@ -326,7 +326,7 @@ def choose_game_type_2players():#Fonction graphique pour choisir de jouer en plu
     btn_sets.bind("<Leave>", lambda event, b=btn_sets: on_leave(b))
 
     bouton_retour = tk.Button(root, text="RETOUR", width=20, height=2, command=show_game_mode)
-    bouton_retour.place(x=10, y=550)
+    bouton_retour.place(relx=0.05, rely=0.95, anchor="sw")
     bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
     bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
 
@@ -418,7 +418,7 @@ def ia_joue():
         turn += 1
 
 
-def choose_game_type_IA():#Fonction graphique pour choisir de jouer en plusieurs ou un seul set
+def choose_game_type_IA():  # Fonction graphique pour choisir de jouer en plusieurs ou un seul set
     clear_window()
 
     type_label = tk.Label(root, text="TYPE DE PARTIE", font=("Arial", 50, "bold"))
@@ -435,7 +435,7 @@ def choose_game_type_IA():#Fonction graphique pour choisir de jouer en plusieurs
     btn_sets.bind("<Leave>", lambda event, b=btn_sets: on_leave(b))
 
     bouton_retour = tk.Button(root, text="RETOUR", width=20, height=2, command=show_game_mode)
-    bouton_retour.place(x=10, y=550)
+    bouton_retour.place(relx=0.05, rely=0.95, anchor="sw")
     bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
     bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
 
