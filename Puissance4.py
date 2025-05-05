@@ -46,50 +46,48 @@ def main(): # Cette fonction initialise et affiche la fenêtre principale
     
 
   
-def show_menu():# Cette fonction affiche le menu principal
+def show_menu():  # Cette fonction affiche le menu principal
     clear_window()
-    frame_menu = tk.Frame(root, width=50, height=50)
-    frame_menu.pack_propagate(False)
+
+    frame_menu = tk.Frame(root, width=800, height=600)  # Définir la taille du Frame
+    frame_menu.pack_propagate(False)  # Empêche l'extension du Frame
     frame_menu.pack()
 
-    titre_jeu = tk.Label(root, text="PUISSANCE 4", font=("Arial", 74,"bold"))
+    titre_jeu = tk.Label(frame_menu, text="PUISSANCE 4", font=("Arial", 74,"bold"))
     titre_jeu.pack(pady=50)
-
-    bouton_play = tk.Button(root, text="Jouer", width=20, height=2, command=show_game_mode)
+    
+    bouton_play = tk.Button(frame_menu, text="Jouer", width=20, height=2, command=show_game_mode)
     bouton_play.pack(pady=20)
     bouton_play.bind("<Enter>", lambda event, b=bouton_play: on_hover(b, "lightgreen"))
     bouton_play.bind("<Leave>", lambda event, b=bouton_play: on_leave(b))
 
-    bouton_quit = tk.Button(root, text="Quitter", width=20, height=2, command=root.quit)
+    bouton_quit = tk.Button(frame_menu, text="Quitter", width=20, height=2, command=root.quit)
     bouton_quit.pack(pady=20)
     bouton_quit.bind("<Enter>", lambda event, b=bouton_quit: on_hover(b, "red"))
     bouton_quit.bind("<Leave>", lambda event, b=bouton_quit: on_leave(b))
 
 
-def show_game_mode():  # Cette fonction affiche le menu principal
+def show_game_mode():  # Cette fonction affiche le menu des modes de jeu
     clear_window()
-    frame_game_mode = tk.Frame(root, width=50, height=50)
+
+    frame_game_mode = tk.Frame(root, width=800, height=600)  # Taille fixe pour le Frame
     frame_game_mode.pack_propagate(False)
     frame_game_mode.pack()
 
-
-    mode_label = tk.Label(root, text="MODE DE JEU", font=("Arial", 74, "bold"))
+    mode_label = tk.Label(frame_game_mode, text="MODE DE JEU", font=("Arial", 74, "bold"))
     mode_label.pack(pady=50)
 
-    # Bouton pour démarrer la partie
-    btn_2j = tk.Button(root, text="2 Joueurs", width=20, height=2, command=choose_game_type_2players)
+    btn_2j = tk.Button(frame_game_mode, text="2 Joueurs", width=20, height=2, command=choose_game_type_2players)
     btn_2j.pack(pady=50)
     btn_2j.bind("<Enter>", lambda event, b=btn_2j: on_hover(b, "lightyellow"))
     btn_2j.bind("<Leave>", lambda event, b=btn_2j: on_leave(b))
 
-    # Bouton contre IA
-    btn_ia = tk.Button(root, text="Contre l'IA", width=20, height=2, command=choose_game_type_IA)
+    btn_ia = tk.Button(frame_game_mode, text="Contre l'IA", width=20, height=2, command=choose_game_type_IA)
     btn_ia.pack(pady=20)
     btn_ia.bind("<Enter>", lambda event, b=btn_ia: on_hover(b, "lightblue"))
     btn_ia.bind("<Leave>", lambda event, b=btn_ia: on_leave(b))
 
-    # Bouton pour revenir au menu principal
-    bouton_retour = tk.Button(root, text="RETOUR", width=20, height=2, command=show_menu)
+    bouton_retour = tk.Button(frame_game_mode, text="RETOUR", width=20, height=2, command=show_menu)
     bouton_retour.pack(side="bottom", anchor="w", padx=10, pady=20)
     bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
     bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
