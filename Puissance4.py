@@ -442,9 +442,11 @@ def undo_last_move(): #Annuler un coup
         return
     row, col = move_history.pop()
     board[row][col] = 0
-    canvas.itemconfig(circles[col][ROWS - 1 - row], fill=WHITE)
+    canvas.itemconfig(circles[col][ROWS - 1 - row], fill=WHITE) #remet la couleur en blanc, comme une case vide
     turn -= 1
-    undo_used = True
+    undo_used = True #Tu bloques l’annulation pour qu’elle ne soit utilisable qu’une seule fois par manche.
+
+
 
 
 def ia_choisir_colonne():
