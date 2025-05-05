@@ -77,12 +77,12 @@ def show_game_mode():  # Cette fonction affiche le menu des modes de jeu
     mode_label = tk.Label(frame_game_mode, text="MODE DE JEU", font=("Arial", 74, "bold"))
     mode_label.pack(pady=50)
 
-    btn_2j = tk.Button(frame_game_mode, text="2 Joueurs", width=20, height=2, command=choose_game_mode_and_parameters)
+    btn_2j = tk.Button(frame_game_mode, text="2 Joueurs", width=20, height=2, command=choose_game_type_2players)
     btn_2j.pack(pady=50)
     btn_2j.bind("<Enter>", lambda event, b=btn_2j: on_hover(b, "lightyellow"))
     btn_2j.bind("<Leave>", lambda event, b=btn_2j: on_leave(b))
 
-    btn_ia = tk.Button(frame_game_mode, text="Contre l'IA", width=20, height=2, command=choose_game_mode_and_parameters)
+    btn_ia = tk.Button(frame_game_mode, text="Contre l'IA", width=20, height=2, command=choose_game_type_IA)
     btn_ia.pack(pady=20)
     btn_ia.bind("<Enter>", lambda event, b=btn_ia: on_hover(b, "lightblue"))
     btn_ia.bind("<Leave>", lambda event, b=btn_ia: on_leave(b))
@@ -313,36 +313,98 @@ def match_nul():
         current_starter = 1 - current_starter #Alterner qui commence
         new_game()
 
-def choose_game_mode_and_parameters():
+def choose_game_type_2players():  # Fonction graphique pour choisir de jouer en plusieurs ou un seul set
     clear_window()
 
-    frame_game_mode = tk.Frame(root, width=800, height=600)
-    frame_game_mode.pack_propagate(False)
-    frame_game_mode.pack()
+    frame_game_type = tk.Frame(root, width=800, height=600)  # Définir la taille du frame
+    frame_game_type.pack_propagate(False)  # Empêche le frame de changer de taille en fonction du contenu
+    frame_game_type.pack()
 
-    mode_label = tk.Label(frame_game_mode, text="CHOISIR LE MODE DE JEU", font=("Arial", 50, "bold"))
-    mode_label.pack(pady=50)
+    type_label = tk.Label(frame_game_type, text="TYPE DE PARTIE", font=("Arial", 50, "bold"))
+    type_label.pack(pady=50)
 
-    # Création des champs pour les paramètres
-    label_rows = tk.Label(frame_game_mode, text="Nombre de lignes:")
+    # Champs de saisie pour les paramètres
+    label_rows = tk.Label(frame_game_type, text="Nombre de lignes:")
     label_rows.pack(pady=5)
-    entry_rows = tk.Entry(frame_game_mode)
+    entry_rows = tk.Entry(frame_game_type)
     entry_rows.pack(pady=5)
     entry_rows.insert(0, "6")
 
-    label_cols = tk.Label(frame_game_mode, text="Nombre de colonnes:")
+    label_cols = tk.Label(frame_game_type, text="Nombre de colonnes:")
     label_cols.pack(pady=5)
-    entry_cols = tk.Entry(frame_game_mode)
+    entry_cols = tk.Entry(frame_game_type)
     entry_cols.pack(pady=5)
     entry_cols.insert(0, "7")
 
-    label_connect = tk.Label(frame_game_mode, text="Nombre de jetons à aligner:")
+    label_connect = tk.Label(frame_game_type, text="Nombre de jetons à aligner:")
     label_connect.pack(pady=5)
-    entry_connect = tk.Entry(frame_game_mode)
+    entry_connect = tk.Entry(frame_game_type)
     entry_connect.pack(pady=5)
     entry_connect.insert(0, "4")
 
-    def validate_and_start_game(mode):
+    # Fonction pour valider et démarrer la partie
+    def validate_parameters(sets):
+        try:
+            r = int(entry_rows.get())
+            c = int(entry_cols.get())
+            n = int(entry_connect.get())
+
+        
+            global ROWS, COLS, CONNECT_N
+            ROWS, COLS, CONNECT_N = r, c, n
+            start_game("2joueurs", sets)  # Lance la partie avec les nouveaux paramètres
+        except ValueError:
+            messagebox.showerror("Erreur", "Valeurs invalides. Veuillez entrer des nombres valides.")
+
+    # Boutons pour choisir le type de jeu
+    btn_simple = tk.Button(frame_game_type, text="Partie simple (1 manche)", width=25, height=2, command=lambda: validate_parameters(1))
+    btn_simple.pack(pady=20)
+    btn_simple.bind("<Enter>", lambda event, b=btn_simple: on_hover(b, "lightblue"))
+    btn_simple.bind("<Leave>", lambda event, b=btn_simple: on_leave(b))
+
+    btn_sets = tk.Button(frame_game_type, text="Match en 3 sets", width=25, height=2, command=lambda: validate_parameters(3))
+    btn_sets.pack(pady=20)
+    btn_sets.bind("<Enter>", lambda event, b=btn_sets: on_hover(b, "lightgreen"))
+    btn_sets.bind("<Leave>", lambda event, b=btn_sets: on_leave(b))
+
+    bouton_retour = tk.Button(frame_game_type, text="RETOUR", width=20, height=2, command=show_game_mode)
+    bouton_retour.place(relx=0.05, rely=0.95, anchor="sw")
+    bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
+    bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
+
+
+
+def choose_game_type_IA():  # Fonction graphique pour choisir de jouer en plusieurs ou un seul set
+    clear_window()
+
+    frame_game_type = tk.Frame(root, width=800, height=600)  # Définir la taille du frame
+    frame_game_type.pack_propagate(False)  # Empêche le frame de changer de taille en fonction du contenu
+    frame_game_type.pack()
+
+    type_label = tk.Label(frame_game_type, text="TYPE DE PARTIE", font=("Arial", 50, "bold"))
+    type_label.pack(pady=50)
+
+    # Champs de saisie pour les paramètres
+    label_rows = tk.Label(frame_game_type, text="Nombre de lignes:")
+    label_rows.pack(pady=5)
+    entry_rows = tk.Entry(frame_game_type)
+    entry_rows.pack(pady=5)
+    entry_rows.insert(0, "6")
+
+    label_cols = tk.Label(frame_game_type, text="Nombre de colonnes:")
+    label_cols.pack(pady=5)
+    entry_cols = tk.Entry(frame_game_type)
+    entry_cols.pack(pady=5)
+    entry_cols.insert(0, "7")
+
+    label_connect = tk.Label(frame_game_type, text="Nombre de jetons à aligner:")
+    label_connect.pack(pady=5)
+    entry_connect = tk.Entry(frame_game_type)
+    entry_connect.pack(pady=5)
+    entry_connect.insert(0, "4")
+
+    # Fonction pour valider et démarrer la partie contre l'IA
+    def validate_parameters(sets):
         try:
             r = int(entry_rows.get())
             c = int(entry_cols.get())
@@ -352,22 +414,22 @@ def choose_game_mode_and_parameters():
                 raise ValueError
             global ROWS, COLS, CONNECT_N
             ROWS, COLS, CONNECT_N = r, c, n
-            start_game(mode, 1 if mode == "2joueurs" else 3)  # 1 pour 2 joueurs, 3 pour IA
+            start_game("ia", sets)  # Lance la partie avec les nouveaux paramètres
         except ValueError:
             messagebox.showerror("Erreur", "Valeurs invalides. Veuillez entrer des nombres valides.")
 
-    # Boutons pour choisir le mode de jeu
-    btn_2players = tk.Button(frame_game_mode, text="2 Joueurs", width=25, height=2, command=lambda: validate_and_start_game("2joueurs"))
-    btn_2players.pack(pady=20)
-    btn_2players.bind("<Enter>", lambda event, b=btn_2players: on_hover(b, "lightblue"))
-    btn_2players.bind("<Leave>", lambda event, b=btn_2players: on_leave(b))
+    # Boutons pour choisir le type de jeu
+    btn_simple = tk.Button(frame_game_type, text="Partie simple (1 manche)", width=25, height=2, command=lambda: validate_parameters(1))
+    btn_simple.pack(pady=20)
+    btn_simple.bind("<Enter>", lambda event, b=btn_simple: on_hover(b, "lightblue"))
+    btn_simple.bind("<Leave>", lambda event, b=btn_simple: on_leave(b))
 
-    btn_IA = tk.Button(frame_game_mode, text="Contre l'IA", width=25, height=2, command=lambda: validate_and_start_game("ia"))
-    btn_IA.pack(pady=20)
-    btn_IA.bind("<Enter>", lambda event, b=btn_IA: on_hover(b, "lightgreen"))
-    btn_IA.bind("<Leave>", lambda event, b=btn_IA: on_leave(b))
+    btn_sets = tk.Button(frame_game_type, text="Match en 3 sets", width=25, height=2, command=lambda: validate_parameters(3))
+    btn_sets.pack(pady=20)
+    btn_sets.bind("<Enter>", lambda event, b=btn_sets: on_hover(b, "lightgreen"))
+    btn_sets.bind("<Leave>", lambda event, b=btn_sets: on_leave(b))
 
-    bouton_retour = tk.Button(frame_game_mode, text="RETOUR", width=20, height=2, command=show_menu)
+    bouton_retour = tk.Button(frame_game_type, text="RETOUR", width=20, height=2, command=show_game_mode)
     bouton_retour.place(relx=0.05, rely=0.95, anchor="sw")
     bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
     bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
