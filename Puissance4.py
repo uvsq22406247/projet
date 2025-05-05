@@ -48,6 +48,10 @@ def main(): # Cette fonction initialise et affiche la fenêtre principale
   
 def show_menu():# Cette fonction affiche le menu principal
     clear_window()
+    frame_menu = tk.Frame(root, width=800, height=600)
+    frame_menu.pack_propagate(False)
+    frame_menu.pack()
+
     titre_jeu = tk.Label(root, text="PUISSANCE 4", font=("Arial", 74,"bold"))
     titre_jeu.pack(pady=50)
 
