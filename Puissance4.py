@@ -328,19 +328,19 @@ def choose_game_type_2players():  # Fonction graphique pour choisir de jouer en 
     label_rows.pack(pady=5)
     entry_rows = tk.Entry(frame_game_type)
     entry_rows.pack(pady=5)
-    entry_rows.insert(0, "6")
+    entry_rows.insert(0, "6")  #met une valeur par défaut 
 
     label_cols = tk.Label(frame_game_type, text="Nombre de colonnes:")
     label_cols.pack(pady=5)
     entry_cols = tk.Entry(frame_game_type)
     entry_cols.pack(pady=5)
-    entry_cols.insert(0, "7")
+    entry_cols.insert(0, "7")  #met une valeur par défaut 
 
     label_connect = tk.Label(frame_game_type, text="Nombre de jetons à aligner:")
     label_connect.pack(pady=5)
     entry_connect = tk.Entry(frame_game_type)
     entry_connect.pack(pady=5)
-    entry_connect.insert(0, "4")
+    entry_connect.insert(0, "4")  #met une valeur par défaut 
 
     # Fonction pour valider et démarrer la partie
     def validate_parameters(sets):
@@ -390,19 +390,19 @@ def choose_game_type_IA():  # Fonction graphique pour choisir de jouer en plusie
     label_rows.pack(pady=5)
     entry_rows = tk.Entry(frame_game_type)
     entry_rows.pack(pady=5)
-    entry_rows.insert(0, "6")
+    entry_rows.insert(0, "6") #met une valeur par défaut 
 
     label_cols = tk.Label(frame_game_type, text="Nombre de colonnes:")
     label_cols.pack(pady=5)
     entry_cols = tk.Entry(frame_game_type)
     entry_cols.pack(pady=5)
-    entry_cols.insert(0, "7")
+    entry_cols.insert(0, "7") #met une valeur par défaut 
 
     label_connect = tk.Label(frame_game_type, text="Nombre de jetons à aligner:")
     label_connect.pack(pady=5)
     entry_connect = tk.Entry(frame_game_type)
     entry_connect.pack(pady=5)
-    entry_connect.insert(0, "4")
+    entry_connect.insert(0, "4") #met une valeur par défaut 
 
     # Fonction pour valider et démarrer la partie contre l'IA
     def validate_parameters(sets):
