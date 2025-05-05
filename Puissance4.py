@@ -348,7 +348,8 @@ def choose_game_type_2players():  # Fonction graphique pour choisir de jouer en 
             r = int(entry_rows.get())
             c = int(entry_cols.get())
             n = int(entry_connect.get())
-
+            if r < 4 or c < 4 or n < 3 or n > min(r, c):
+                raise ValueError
         
             global ROWS, COLS, CONNECT_N
             ROWS, COLS, CONNECT_N = r, c, n
