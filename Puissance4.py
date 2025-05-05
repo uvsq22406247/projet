@@ -236,14 +236,14 @@ def end_game(player):
     winner = ""
     
     if game_mode == "ia":
-        winner = "Joueur Rouge" if player == 1 else "IA"
+        winner = "Joueur Rouge" if player == 1 else "IA" # Détermine le gagnant en fonction du joueur si le mode IA est activé
     else:
-        winner = "Joueur Rouge" if player == 1 else "Joueur Jaune"
+        winner = "Joueur Rouge" if player == 1 else "Joueur Jaune"  # Détermine le gagnant si c’est une partie à deux joueurs humains
     
     if player == 1:
         score_j1 += 1 #Augmente le score du joueur gagnant
     else:
-        score_j2 += 1
+        score_j2 += 1 # Augmente le score de l'IA ou du Joueur Jaune selon le mode 
     
     messagebox.showinfo("Fin de manche", f"{winner} a gagné la manche {current_set} !")
     new_game()
