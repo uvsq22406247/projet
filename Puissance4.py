@@ -312,20 +312,49 @@ def match_nul():
 def choose_game_type_2players():  # Fonction graphique pour choisir de jouer en plusieurs ou un seul set
     clear_window()
 
-    type_label = tk.Label(root, text="TYPE DE PARTIE", font=("Arial", 50, "bold"))
+    frame_game_type = tk.Frame(root, width=800, height=600)  # Définir la taille du frame
+    frame_game_type.pack_propagate(False)  # Empêche le frame de changer de taille en fonction du contenu
+    frame_game_type.pack()
+
+    type_label = tk.Label(frame_game_type, text="TYPE DE PARTIE", font=("Arial", 50, "bold"))
     type_label.pack(pady=50)
 
-    btn_simple = tk.Button(root, text="Partie simple (1 manche)", width=25, height=2, command=lambda: start_game("2joueurs", 1))
+    btn_simple = tk.Button(frame_game_type, text="Partie simple (1 manche)", width=25, height=2, command=lambda: start_game("2joueurs", 1))
     btn_simple.pack(pady=20)
     btn_simple.bind("<Enter>", lambda event, b=btn_simple: on_hover(b, "lightblue"))
     btn_simple.bind("<Leave>", lambda event, b=btn_simple: on_leave(b))
 
-    btn_sets = tk.Button(root, text="Match en 3 sets", width=25, height=2, command=lambda: start_game("2joueurs", 3))
+    btn_sets = tk.Button(frame_game_type, text="Match en 3 sets", width=25, height=2, command=lambda: start_game("2joueurs", 3))
     btn_sets.pack(pady=20)
     btn_sets.bind("<Enter>", lambda event, b=btn_sets: on_hover(b, "lightgreen"))
     btn_sets.bind("<Leave>", lambda event, b=btn_sets: on_leave(b))
 
-    bouton_retour = tk.Button(root, text="RETOUR", width=20, height=2, command=show_game_mode)
+    bouton_retour = tk.Button(frame_game_type, text="RETOUR", width=20, height=2, command=show_game_mode)
+    bouton_retour.place(relx=0.05, rely=0.95, anchor="sw")
+    bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
+    bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
+
+def choose_game_type_IA():  # Fonction graphique pour choisir de jouer en plusieurs ou un seul set
+    clear_window()
+
+    frame_game_type = tk.Frame(root, width=800, height=600)  # Définir la taille du frame
+    frame_game_type.pack_propagate(False)  # Empêche le frame de changer de taille en fonction du contenu
+    frame_game_type.pack()
+
+    type_label = tk.Label(frame_game_type, text="TYPE DE PARTIE", font=("Arial", 50, "bold"))
+    type_label.pack(pady=50)
+
+    btn_simple = tk.Button(frame_game_type, text="Partie simple (1 manche)", width=25, height=2, command=lambda: start_game("ia", 1))
+    btn_simple.pack(pady=20)
+    btn_simple.bind("<Enter>", lambda event, b=btn_simple: on_hover(b, "lightblue"))
+    btn_simple.bind("<Leave>", lambda event, b=btn_simple: on_leave(b))
+
+    btn_sets = tk.Button(frame_game_type, text="Match en 3 sets", width=25, height=2, command=lambda: start_game("ia", 3))
+    btn_sets.pack(pady=20)
+    btn_sets.bind("<Enter>", lambda event, b=btn_sets: on_hover(b, "lightgreen"))
+    btn_sets.bind("<Leave>", lambda event, b=btn_sets: on_leave(b))
+
+    bouton_retour = tk.Button(frame_game_type, text="RETOUR", width=20, height=2, command=show_game_mode)
     bouton_retour.place(relx=0.05, rely=0.95, anchor="sw")
     bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
     bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
@@ -417,27 +446,6 @@ def ia_joue():
             return
         turn += 1
 
-
-def choose_game_type_IA():  # Fonction graphique pour choisir de jouer en plusieurs ou un seul set
-    clear_window()
-
-    type_label = tk.Label(root, text="TYPE DE PARTIE", font=("Arial", 50, "bold"))
-    type_label.pack(pady=50)
-
-    btn_simple = tk.Button(root, text="Partie simple (1 manche)", width=25, height=2, command=lambda: start_game("ia", 1))
-    btn_simple.pack(pady=20)
-    btn_simple.bind("<Enter>", lambda event, b=btn_simple: on_hover(b, "lightblue"))
-    btn_simple.bind("<Leave>", lambda event, b=btn_simple: on_leave(b))
-
-    btn_sets = tk.Button(root, text="Match en 3 sets", width=25, height=2, command=lambda: start_game("ia", 3))
-    btn_sets.pack(pady=20)
-    btn_sets.bind("<Enter>", lambda event, b=btn_sets: on_hover(b, "lightgreen"))
-    btn_sets.bind("<Leave>", lambda event, b=btn_sets: on_leave(b))
-
-    bouton_retour = tk.Button(root, text="RETOUR", width=20, height=2, command=show_game_mode)
-    bouton_retour.place(relx=0.05, rely=0.95, anchor="sw")
-    bouton_retour.bind("<Enter>", lambda event, b=bouton_retour: on_hover(b, "red"))
-    bouton_retour.bind("<Leave>", lambda event, b=bouton_retour: on_leave(b))
 
 # Lancer le programme
 if __name__ == "__main__":
