@@ -22,7 +22,6 @@ Le jeu propose plusieurs options pour enrichir l'expérience :
 - ⚙️ **Paramètres personnalisables** :
   - **Taille du plateau** (nombre de lignes et de colonnes)
   - **Nombre de jetons à aligner pour gagner**
-  - **Couleurs des joueurs**
   - **Affichage des scores**
 - 🤖 **Mode IA** : affrontez une intelligence artificielle si vous jouez en solo.
 - ↩️ **Annuler un coup** : appuyez sur la touche **Échap** pour revenir sur le coup précédent (fonction accessible uniquement pendant une partie).
