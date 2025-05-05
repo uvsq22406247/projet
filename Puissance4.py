@@ -68,6 +68,10 @@ def show_menu():# Cette fonction affiche le menu principal
 
 def show_game_mode():  # Cette fonction affiche le menu principal
     clear_window()
+    frame_game_mode = tk.Frame(root, width=800, height=600)
+    frame_game_mode.pack_propagate(False)
+    frame_game_mode.pack()
+
 
     mode_label = tk.Label(root, text="MODE DE JEU", font=("Arial", 74, "bold"))
     mode_label.pack(pady=50)
