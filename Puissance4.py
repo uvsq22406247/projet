@@ -48,7 +48,7 @@ def main(): # Cette fonction initialise et affiche la fenêtre principale
   
 def show_menu():# Cette fonction affiche le menu principal
     clear_window()
-    frame_menu = tk.Frame(root, width=800, height=600)
+    frame_menu = tk.Frame(root, width=50, height=50)
     frame_menu.pack_propagate(False)
     frame_menu.pack()
 
@@ -68,7 +68,7 @@ def show_menu():# Cette fonction affiche le menu principal
 
 def show_game_mode():  # Cette fonction affiche le menu principal
     clear_window()
-    frame_game_mode = tk.Frame(root, width=800, height=600)
+    frame_game_mode = tk.Frame(root, width=50, height=50)
     frame_game_mode.pack_propagate(False)
     frame_game_mode.pack()
 
