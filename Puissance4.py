@@ -450,18 +450,18 @@ def undo_last_move(): #Annuler un coup
 
 
 def ia_choisir_colonne():
+    for col in range(COLS): # Pour chaque colonne du plateau
+        temp_board = [row[:] for row in board] # On crée une copie de la grille
+        if simule_coup(temp_board, col, 2) and check_win_IA(temp_board, 2): # On simule un coup IA dans cette colonne   # On regarde si ce coup mène à la victoire
+            return col # Si oui, on choisit cette colonne
     for col in range(COLS):
         temp_board = [row[:] for row in board]
-        if simule_coup(temp_board, col, 2) and check_win_IA(temp_board, 2):
-            return col
-    for col in range(COLS):
-        temp_board = [row[:] for row in board]
-        if simule_coup(temp_board, col, 1) and check_win_IA(temp_board, 1):
-            return col
-    colonnes_valides = [c for c in range(COLS) if board[ROWS - 1][c] == 0]
-    if colonnes_valides:
-        return random.choice(colonnes_valides)
-    return None
+        if simule_coup(temp_board, col, 1) and check_win_IA(temp_board, 1): # Simule un coup du joueur   # Si ça mène à une victoire pour lui
+            return col # On bloque ce coup
+    colonnes_valides = [c for c in range(COLS) if board[ROWS - 1][c] == 0] # Liste des colonnes jouables
+    if colonnes_valides:  
+        return random.choice(colonnes_valides)  # L’IA joue au hasard
+    return None   # Grille pleine
 
 def simule_coup(temp_board, col, player):
     for row in range(ROWS):
