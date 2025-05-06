@@ -244,7 +244,7 @@ def end_game(player):
     messagebox.showinfo("Fin de manche", f"{winner} a gagné la manche {current_set} !")
     new_game()
     
-    #On vérifies si le match est fini
+    #On vérifies si le match est fini 
     if score_j1 == sets_to_win:
         messagebox.showinfo("Fin du match", "Joueur Rouge remporte le match !")
         reset_match()
