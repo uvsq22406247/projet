@@ -465,8 +465,8 @@ def ia_choisir_colonne():
 
 def simule_coup(temp_board, col, player):
     for row in range(ROWS):
-        if temp_board[row][col] == 0:
-            temp_board[row][col] = player
+        if temp_board[row][col] == 0: # Si la case est vide (donc on peut y placer un jeton)
+            temp_board[row][col] = player # On place le jeton du joueur dans la case simulée
             return True
     return False
 
@@ -491,13 +491,13 @@ def check_win_IA(temp_board, player):
 
 def ia_joue():
     global turn, game_over, moves
-    ia_col = ia_choisir_colonne()
-    if ia_col is not None and drop_piece(ia_col, 2):
-        moves.append(ia_col)
-        if check_win(2):
-            end_game(2)
+    ia_col = ia_choisir_colonne() # L'IA choisit une colonne où elle veut jouer
+    if ia_col is not None and drop_piece(ia_col, 2): # Si la colonne est valide et que le jeton peut être placé
+        moves.append(ia_col) # On ajoute ce coup à la liste des coups joués (utile pour sauvegarde ou rejouer)
+        if check_win(2): # Si ce coup fait gagner l'IA (joueur 2)
+            end_game(2) # On termine la manche en déclarant l'IA gagnante
             return
-        if all(board[row][col] != 0 for col in range(COLS) for row in range(ROWS)):
+        if all(board[row][col] != 0 for col in range(COLS) for row in range(ROWS)): # Si toutes les cases sont pleines => match nul
             match_nul()
             return
         turn += 1
