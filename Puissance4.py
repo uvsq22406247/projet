@@ -438,7 +438,7 @@ def choose_game_type_IA():  # Fonction graphique pour choisir de jouer en plusie
 
 def undo_last_move(): #Annuler un coup
     global turn, game_over,undo_used
-    if not move_history or game_over or undo_used:
+    if not move_history or game_over or undo_used: # pour verifier s'il est interdit d'annuler , dans 3 cas 
         return
     row, col = move_history.pop()
     board[row][col] = 0
